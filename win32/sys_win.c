@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // sys_win.h
 
-#include "../qcommon/qcommon.h"
+#include "../common/common.h"
 #include "winquake.h"
 #include "resource.h"
 #include <errno.h>
@@ -70,7 +70,7 @@ void Sys_Error (char *error, ...)
 	char		text[1024];
 
 	CL_Shutdown ();
-	Qcommon_Shutdown ();
+	Com_Shutdown ();
 
 	va_start (argptr, error);
 	vsprintf (text, error, argptr);
@@ -92,7 +92,7 @@ void Sys_Quit (void)
 	timeEndPeriod( 1 );
 
 	CL_Shutdown();
-	Qcommon_Shutdown ();
+	Com_Shutdown ();
 	CloseHandle (qwclsemaphore);
 	if (dedicated && dedicated->value)
 		FreeConsole ();
@@ -625,7 +625,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 		}
 	}
 
-	Qcommon_Init (argc, argv);
+	Com_Init (argc, argv);
 	oldtime = Sys_Milliseconds ();
 
     /* main window message loop */
@@ -655,7 +655,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 		//	_controlfp( ~( _EM_ZERODIVIDE /*| _EM_INVALID*/ ), _MCW_EM );
 		_controlfp( _PC_24, _MCW_PC );
-		Qcommon_Frame (time);
+		Com_Frame (time);
 
 		oldtime = newtime;
 	}

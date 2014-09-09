@@ -321,8 +321,8 @@
   <ItemGroup>
     <ClInclude Include="..\client\ref.h" />
     <ClInclude Include="..\game\q_shared.h" />
-    <ClInclude Include="..\qcommon\qcommon.h" />
-    <ClInclude Include="..\qcommon\qfiles.h" />
+    <ClInclude Include="..\common\common.h" />
+    <ClInclude Include="..\common\files.h" />
     <ClInclude Include="..\win32\glw_win.h" />
     <ClInclude Include="..\win32\winquake.h" />
     <ClInclude Include="anorms.h" />
@@ -331,7 +331,6 @@
     <ClInclude Include="gl_model.h" />
     <ClInclude Include="qgl.h" />
     <ClInclude Include="qmenu.h" />
-    <ClInclude Include="ref_gl.h" />
     <ClInclude Include="warpsin.h" />
   </ItemGroup>
   <ItemGroup>

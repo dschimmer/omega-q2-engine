@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // sys_null.h -- null system driver to aid porting efforts
 
-#include "../qcommon/qcommon.h"
+#include "../common/common.h"
 #include "errno.h"
 
 int	curtime;
@@ -135,11 +135,11 @@ void	Sys_Init (void)
 
 void main (int argc, char **argv)
 {
-	Qcommon_Init (argc, argv);
+	Com_Init (argc, argv);
 
 	while (1)
 	{
-		Qcommon_Frame (0.1);
+		Com_Frame (0.1);
 	}
 }
 

@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <dlfcn.h>
 
-#include "../qcommon/qcommon.h"
+#include "../common/common.h"
 
 #include "../linux/rw_linux.h"
 
@@ -90,7 +90,7 @@ void Sys_Printf (char *fmt, ...)
 void Sys_Quit (void)
 {
 	CL_Shutdown ();
-	Qcommon_Shutdown ();
+	Com_Shutdown ();
     fcntl (0, F_SETFL, fcntl (0, F_GETFL, 0) & ~FNDELAY);
 	_exit(0);
 }
@@ -116,7 +116,7 @@ void Sys_Error (char *error, ...)
 	fprintf(stderr, "Error: %s\n", string);
 
 	CL_Shutdown ();
-	Qcommon_Shutdown ();
+	Com_Shutdown ();
 	_exit (1);
 
 } 
@@ -295,7 +295,7 @@ int main (int argc, char **argv)
 	saved_euid = geteuid();
 	seteuid(getuid());
 
-	Qcommon_Init(argc, argv);
+	Com_Init(argc, argv);
 
 /* 	fcntl(0, F_SETFL, fcntl (0, F_GETFL, 0) | FNDELAY); */
 
@@ -313,7 +313,7 @@ int main (int argc, char **argv)
 			newtime = Sys_Milliseconds ();
 			time = newtime - oldtime;
 		} while (time < 1);
-		Qcommon_Frame (time);
+		Com_Frame (time);
 		oldtime = newtime;
     }
 

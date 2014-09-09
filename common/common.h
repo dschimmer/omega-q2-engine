@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-// qcommon.h -- definitions common between client and server, but not game.dll
+// common.h -- definitions common between client and server, but not game.dll
 
 #include "../game/q_shared.h"
 
@@ -148,7 +148,7 @@ void COM_ClearArgv (int arg);
 int COM_CheckParm (char *parm);
 void COM_AddParm (char *parm);
 
-void COM_Init (void);
+//void COM_Init (void);
 void COM_InitArgv (int argc, char **argv);
 
 char *CopyString (char *in);
@@ -622,7 +622,7 @@ CMODEL
 */
 
 
-#include "../qcommon/qfiles.h"
+#include "../common/files.h"
 
 cmodel_t	*CM_LoadMap (char *name, qboolean clientload, unsigned *checksum);
 cmodel_t	*CM_InlineModel (char *name);	// *1, *2, etc
@@ -768,9 +768,9 @@ void *Z_Malloc (int size);			// returns 0 filled memory
 void *Z_TagMalloc (int size, int tag);
 void Z_FreeTags (int tag);
 
-void Qcommon_Init (int argc, char **argv);
-void Qcommon_Frame (int msec);
-void Qcommon_Shutdown (void);
+void Com_Init (int argc, char **argv);
+void Com_Frame (int msec);
+void Com_Shutdown (void);
 
 #define NUMVERTEXNORMALS	162
 extern	vec3_t	bytedirs[NUMVERTEXNORMALS];

@@ -934,7 +934,7 @@ void COM_DefaultExtension (char *path, char *extension)
 qboolean	bigendien;
 
 // can't just use function pointers, or dll linkage can
-// mess up when qcommon is included in multiple places
+// mess up when common is included in multiple places
 short	(*_BigShort) (short l);
 short	(*_LittleShort) (short l);
 int		(*_BigLong) (int l);

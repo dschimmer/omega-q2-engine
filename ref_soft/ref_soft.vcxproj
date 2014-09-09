@@ -438,8 +438,8 @@
   <ItemGroup>
     <ClInclude Include="..\client\ref.h" />
     <ClInclude Include="..\game\q_shared.h" />
-    <ClInclude Include="..\qcommon\qcommon.h" />
-    <ClInclude Include="..\qcommon\qfiles.h" />
+    <ClInclude Include="..\common\common.h" />
+    <ClInclude Include="..\common\files.h" />
     <ClInclude Include="..\win32\rw_win.h" />
     <ClInclude Include="..\win32\winquake.h" />
     <ClInclude Include="adivtab.h" />

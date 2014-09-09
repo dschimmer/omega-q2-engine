@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 // common.c -- misc functions used in client and server
-#include "qcommon.h"
+#include "common.h"
 #include <setjmp.h>
 
 #define	MAXPRINTMSG	4096
@@ -1395,10 +1395,10 @@ void Com_Error_f (void)
 
 /*
 =================
-Qcommon_Init
+Com_Init
 =================
 */
-void Qcommon_Init (int argc, char **argv)
+void Com_Init (int argc, char **argv)
 {
 	char	*s;
 
@@ -1488,10 +1488,10 @@ void Qcommon_Init (int argc, char **argv)
 
 /*
 =================
-Qcommon_Frame
+Com_Frame
 =================
 */
-void Qcommon_Frame (int msec)
+void Com_Frame (int msec)
 {
 	char	*s;
 	int		time_before, time_between, time_after;
@@ -1583,9 +1583,9 @@ void Qcommon_Frame (int msec)
 
 /*
 =================
-Qcommon_Shutdown
+Com_Shutdown
 =================
 */
-void Qcommon_Shutdown (void)
+void Com_Shutdown (void)
 {
 }
