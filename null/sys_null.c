@@ -135,7 +135,9 @@ void	Sys_Init (void)
 
 void main (int argc, char **argv)
 {
-	Com_Init (argc, argv);
+    Com_InitArgv(argc, argv);
+    
+	Com_Init();
 
 	while (1)
 	{

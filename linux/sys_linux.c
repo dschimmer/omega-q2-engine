@@ -294,8 +294,10 @@ int main (int argc, char **argv)
 	// go back to real user for config loads
 	saved_euid = geteuid();
 	seteuid(getuid());
+	
+	Com_InitArgv(argc, argv);
 
-	Com_Init(argc, argv);
+	Com_Init();
 
 	fcntl(0, F_SETFL, fcntl (0, F_GETFL, 0) | FNDELAY);
 

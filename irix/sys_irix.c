@@ -295,7 +295,8 @@ int main (int argc, char **argv)
 	saved_euid = geteuid();
 	seteuid(getuid());
 
-	Com_Init(argc, argv);
+	Com_InitArgv(argc, argv);
+	Com_Init();
 
 /* 	fcntl(0, F_SETFL, fcntl (0, F_GETFL, 0) | FNDELAY); */
 

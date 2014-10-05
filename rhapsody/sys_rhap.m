@@ -314,8 +314,9 @@ void main (int argc, char **argv)
 	int		oldtime, t;
         
     pool = [[NSAutoreleasePool alloc] init];
-        
-    Qcommon_Init (argc, argv);
+
+    Com_InitArgv(argc, argv);        
+    Com_Init(argc, argv);
 
     [pool release];
 
@@ -328,7 +329,7 @@ void main (int argc, char **argv)
             moncontrol(1);// profile only while we do each Quake frame
 
 		t = Sys_Milliseconds ();
-        Qcommon_Frame (t - oldtime);
+        Com_Frame (t - oldtime);
 		oldtime = t;
         moncontrol(0);
 

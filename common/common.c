@@ -29,6 +29,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 int		com_argc;
 char	*com_argv[MAX_NUM_ARGVS+1];
 
+// D Schimmer, our command line reference.
+char    cmdline[MAX_STRING_CHARS];
+
 int		realtime;
 
 jmp_buf abortframe;		// an ERR_DROP occured, exit the entire frame
@@ -981,10 +984,10 @@ void COM_ClearArgv (int arg)
 
 /*
 ================
-COM_InitArgv
+Com_InitArgv
 ================
 */
-void COM_InitArgv (int argc, char **argv)
+void Com_InitArgv (int argc, char **argv)
 {
 	int		i;
 
@@ -998,6 +1001,46 @@ void COM_InitArgv (int argc, char **argv)
 		else
 			com_argv[i] = argv[i];
 	}
+}
+
+
+/*
+==================
+Com_ParseCommandLine
+
+==================
+*/
+void Com_ParseCommandLine(const char *lpCmdLine)
+{
+    char *s = NULL;
+
+    if (!lpCmdLine) {
+        return;
+    }
+
+    memset(cmdline, 0, sizeof(cmdline));
+
+    strncpy(cmdline, lpCmdLine, sizeof(cmdline));
+
+    s = cmdline;
+
+    while (*s && (com_argc < MAX_NUM_ARGVS)) {
+        while (*s && ((*s <= 32) || (*s > 126)))
+            s++;
+
+        if (*s) {
+            com_argv[com_argc] = s;
+            com_argc++;
+
+            while (*s && ((*s > 32) && (*s <= 126)))
+                lpCmdLine++;
+
+            if (*s) {
+                *s = 0;
+                s++;
+            }
+        }
+    }
 }
 
 /*
@@ -1398,92 +1441,93 @@ void Com_Error_f (void)
 Com_Init
 =================
 */
-void Com_Init (int argc, char **argv)
+void Com_Init()
 {
-	char	*s;
+    char *s;
 
-	if (setjmp (abortframe) )
-		Sys_Error ("Error during initialization");
+    if (setjmp(abortframe)) {
+        Sys_Error("Error during initialization");
+        return;
+    }
 
-	z_chain.next = z_chain.prev = &z_chain;
+    z_chain.next = z_chain.prev = &z_chain;
 
-	// prepare enough of the subsystems to handle
-	// cvar and command buffer management
-	COM_InitArgv (argc, argv);
-
-	Swap_Init ();
-	Cbuf_Init ();
-
-	Cmd_Init ();
-	Cvar_Init ();
-
-	Key_Init ();
-
-	// we need to add the early commands twice, because
-	// a basedir or cddir needs to be set before execing
-	// config files, but we want other parms to override
-	// the settings of the config files
-	Cbuf_AddEarlyCommands (false);
-	Cbuf_Execute ();
-
-	FS_InitFilesystem ();
-
-	Cbuf_AddText ("exec default.cfg\n");
-	Cbuf_AddText ("exec config.cfg\n");
-
-	Cbuf_AddEarlyCommands (true);
-	Cbuf_Execute ();
-
-	//
-	// init commands and vars
-	//
-    Cmd_AddCommand ("z_stats", Z_Stats_f);
-    Cmd_AddCommand ("error", Com_Error_f);
-
-	host_speeds = Cvar_Get ("host_speeds", "0", 0);
-	log_stats = Cvar_Get ("log_stats", "0", 0);
-	developer = Cvar_Get ("developer", "0", 0);
-	timescale = Cvar_Get ("timescale", "1", 0);
-	fixedtime = Cvar_Get ("fixedtime", "0", 0);
-	logfile_active = Cvar_Get ("logfile", "0", 0);
-	showtrace = Cvar_Get ("showtrace", "0", 0);
-#ifdef DEDICATED_ONLY
-	dedicated = Cvar_Get ("dedicated", "1", CVAR_NOSET);
-#else
-	dedicated = Cvar_Get ("dedicated", "0", CVAR_NOSET);
+#if 0
+    // prepare enough of the subsystems to handle
+    // cvar and command buffer management
+    COM_InitArgv(argc, argv);
 #endif
 
-	s = va("%4.2f %s %s %s", VERSION, CPUSTRING, __DATE__, BUILDSTRING);
-	Cvar_Get ("version", s, CVAR_SERVERINFO|CVAR_NOSET);
+    Swap_Init();
+    Cbuf_Init();
+
+    Cmd_Init();
+    Cvar_Init();
+
+    Key_Init();
+
+    // we need to add the early commands twice, because
+    // a basedir or cddir needs to be set before execing
+    // config files, but we want other parms to override
+    // the settings of the config files
+    Cbuf_AddEarlyCommands(false);
+    Cbuf_Execute();
+
+    FS_InitFilesystem();
+
+    Cbuf_AddText("exec default.cfg\n");
+    Cbuf_AddText("exec config.cfg\n");
+
+    Cbuf_AddEarlyCommands(true);
+    Cbuf_Execute();
+
+    //
+    // init commands and vars
+    //
+    Cmd_AddCommand("z_stats", Z_Stats_f);
+    Cmd_AddCommand("error", Com_Error_f);
+
+    host_speeds = Cvar_Get("host_speeds", "0", 0);
+    log_stats = Cvar_Get("log_stats", "0", 0);
+    developer = Cvar_Get("developer", "0", 0);
+    timescale = Cvar_Get("timescale", "1", 0);
+    fixedtime = Cvar_Get("fixedtime", "0", 0);
+    logfile_active = Cvar_Get("logfile", "0", 0);
+    showtrace = Cvar_Get("showtrace", "0", 0);
+#ifdef DEDICATED_ONLY
+    dedicated = Cvar_Get ("dedicated", "1", CVAR_NOSET);
+#else
+    dedicated = Cvar_Get("dedicated", "0", CVAR_NOSET);
+#endif
+
+    s = va("%4.2f %s %s %s", VERSION, CPUSTRING, __DATE__, BUILDSTRING);
+    Cvar_Get("version", s, CVAR_SERVERINFO | CVAR_NOSET);
 
 
-	if (dedicated->value)
-		Cmd_AddCommand ("quit", Com_Quit);
+    if (dedicated->value)
+        Cmd_AddCommand("quit", Com_Quit);
 
-	Sys_Init ();
+    Sys_Init();
 
-	NET_Init ();
-	Netchan_Init ();
+    NET_Init();
+    Netchan_Init();
 
-	SV_Init ();
-	CL_Init ();
+    SV_Init();
+    CL_Init();
 
-	// add + commands from command line
-	if (!Cbuf_AddLateCommands ())
-	{	// if the user didn't give any commands, run default action
-		if (!dedicated->value)
-			Cbuf_AddText ("d1\n");
-		else
-			Cbuf_AddText ("dedicated_start\n");
-		Cbuf_Execute ();
-	}
-	else
-	{	// the user asked for something explicit
-		// so drop the loading plaque
-		SCR_EndLoadingPlaque ();
-	}
+    // add + commands from command line
+    if (!Cbuf_AddLateCommands()) {	// if the user didn't give any commands, run default action
+        if (!dedicated->value)
+            Cbuf_AddText("d1\n");
+        else
+            Cbuf_AddText("dedicated_start\n");
+        Cbuf_Execute();
+    } else {	// the user asked for something explicit
+        // so drop the loading plaque
+        SCR_EndLoadingPlaque();
+    }
 
-	Com_Printf ("====== Quake2 Initialized ======\n\n");	
+    Com_Printf("====== Quake2 Initialized ======\n\n");
 }
 
 /*

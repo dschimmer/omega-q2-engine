@@ -148,8 +148,8 @@ void COM_ClearArgv (int arg);
 int COM_CheckParm (char *parm);
 void COM_AddParm (char *parm);
 
-//void COM_Init (void);
-void COM_InitArgv (int argc, char **argv);
+void Com_InitArgv (int argc, char **argv);
+void Com_ParseCommandLine(const char *lpCmdLine);
 
 char *CopyString (char *in);
 
@@ -768,9 +768,9 @@ void *Z_Malloc (int size);			// returns 0 filled memory
 void *Z_TagMalloc (int size, int tag);
 void Z_FreeTags (int tag);
 
-void Com_Init (int argc, char **argv);
-void Com_Frame (int msec);
-void Com_Shutdown (void);
+void Com_Init();
+void Com_Frame(int msec);
+void Com_Shutdown(void);
 
 #define NUMVERTEXNORMALS	162
 extern	vec3_t	bytedirs[NUMVERTEXNORMALS];

@@ -50,11 +50,6 @@ unsigned	sys_frame_time;
 
 static HANDLE		qwclsemaphore;
 
-#define	MAX_NUM_ARGVS	128
-int			argc;
-char		*argv[MAX_NUM_ARGVS];
-
-
 /*
 ===============================================================================
 
@@ -249,7 +244,7 @@ void Sys_Init (void)
 		houtput = GetStdHandle (STD_OUTPUT_HANDLE);
 	
 		// let QHOST hook in
-		InitConProc (argc, argv);
+		InitConProc();
 	}
 }
 
@@ -552,41 +547,6 @@ void *Sys_GetGameAPI (void *parms)
 
 /*
 ==================
-ParseCommandLine
-
-==================
-*/
-void ParseCommandLine (LPSTR lpCmdLine)
-{
-	argc = 1;
-	argv[0] = "exe";
-
-	while (*lpCmdLine && (argc < MAX_NUM_ARGVS))
-	{
-		while (*lpCmdLine && ((*lpCmdLine <= 32) || (*lpCmdLine > 126)))
-			lpCmdLine++;
-
-		if (*lpCmdLine)
-		{
-			argv[argc] = lpCmdLine;
-			argc++;
-
-			while (*lpCmdLine && ((*lpCmdLine > 32) && (*lpCmdLine <= 126)))
-				lpCmdLine++;
-
-			if (*lpCmdLine)
-			{
-				*lpCmdLine = 0;
-				lpCmdLine++;
-			}
-			
-		}
-	}
-
-}
-
-/*
-==================
 WinMain
 
 ==================
@@ -605,8 +565,10 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 	global_hInstance = hInstance;
 
-	ParseCommandLine (lpCmdLine);
+	Com_ParseCommandLine(lpCmdLine);
 
+// XXX: dschimmer, handle this better....
+#if 0
 	// if we find the CD, add a +set cddir xxx command line
 	cddir = Sys_ScanForCD ();
 	if (cddir && argc < MAX_NUM_ARGVS - 3)
@@ -624,8 +586,9 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 			argv[argc++] = cddir;
 		}
 	}
+#endif
 
-	Com_Init (argc, argv);
+	Com_Init ();
 	oldtime = Sys_Milliseconds ();
 
     /* main window message loop */

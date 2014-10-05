@@ -295,10 +295,12 @@ int main (int argc, char **argv)
 		newargv[i + 3] = argv[i];
 	newargc += 3;
 
-	Com_Init(newargc, newargv);
+	Com_InitArgv(newargc, newargv);
 #else
-	Com_Init(argc, argv);
+	Com_InitArgv(argc, argv);
 #endif
+
+    Com_Init();
 
 	fcntl(0, F_SETFL, fcntl (0, F_GETFL, 0) | FNDELAY);
 

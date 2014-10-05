@@ -81,17 +81,14 @@ int CCheckParm (char *parm)
 }
 
 
-void InitConProc (int argc, char **argv)
+void InitConProc()
 {
 	unsigned	threadAddr;
 	HANDLE		hFile;
 	HANDLE		heventParent;
 	HANDLE		heventChild;
 	int			t;
-
-	ccom_argc = argc;
-	ccom_argv = argv;
-
+#if 0
 // give QHOST a chance to hook into the console
 	if ((t = CCheckParm ("-HFILE")) > 0)
 	{
@@ -110,7 +107,7 @@ void InitConProc (int argc, char **argv)
 		if (t < argc)
 			heventChild = (HANDLE)atoi (ccom_argv[t+1]);
 	}
-
+#endif
 
 // ignore if we don't have all the events.
 	if (!hFile || !heventParent || !heventChild)
