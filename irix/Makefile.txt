@@ -25,6 +25,7 @@ LINUX_DIR=$(MOUNT_DIR)/linux
 GAME_DIR=$(MOUNT_DIR)/game
 CTF_DIR=$(MOUNT_DIR)/ctf
 XATRIX_DIR=$(MOUNT_DIR)/xatrix
+SHARED_DIR=$(MOUNT_DIR)/shared
 
 ARCH=mips
 
@@ -138,7 +139,7 @@ QUAKE2_OBJS = \
 	$(BUILDDIR)/client/snd_mem.o \
 	$(BUILDDIR)/client/snd_mix.o \
 	$(BUILDDIR)/client/qmenu.o \
-	$(BUILDDIR)/client/m_flash.o \
+	$(BUILDDIR)/client/flash.o \
 	\
 	$(BUILDDIR)/client/cmd.o \
 	$(BUILDDIR)/client/cmodel.o \
@@ -167,7 +168,7 @@ QUAKE2_OBJS = \
 	$(BUILDDIR)/client/glob.o \
 	$(BUILDDIR)/client/net_udp.o \
 	\
-	$(BUILDDIR)/client/q_shared.o \
+	$(BUILDDIR)/client/shared.o \
 	$(BUILDDIR)/client/pmove.o
 
 $(BUILDDIR)/quake2 : $(QUAKE2_OBJS)
@@ -230,7 +231,7 @@ $(BUILDDIR)/client/snd_mix.o :    $(CLIENT_DIR)/snd_mix.c
 $(BUILDDIR)/client/qmenu.o :      $(CLIENT_DIR)/qmenu.c
 	$(DO_CC)
 
-$(BUILDDIR)/client/m_flash.o :    $(GAME_DIR)/m_flash.c
+$(BUILDDIR)/client/flash.o :      $(SHARED_DIR)/flash.c
 	$(DO_CC)
 
 $(BUILDDIR)/client/cmd.o :        $(COMMON_DIR)/cmd.c
@@ -257,7 +258,7 @@ $(BUILDDIR)/client/md4.o :        $(COMMON_DIR)/md4.c
 $(BUILDDIR)/client/net_chan.o :   $(COMMON_DIR)/net_chan.c
 	$(DO_CC)
 
-$(BUILDDIR)/client/q_shared.o :   $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/client/shared.o :     $(SHARED_DIR)/shared.c
 	$(DO_CC)
 
 $(BUILDDIR)/client/pmove.o :      $(COMMON_DIR)/pmove.c
@@ -362,8 +363,8 @@ GAME_OBJS = \
 	$(BUILDDIR)/game/p_trail.o \
 	$(BUILDDIR)/game/p_view.o \
 	$(BUILDDIR)/game/p_weapon.o \
-	$(BUILDDIR)/game/q_shared.o \
-	$(BUILDDIR)/game/m_flash.o
+	$(BUILDDIR)/game/shared.o \
+	$(BUILDDIR)/game/flash.o
 
 $(BUILDDIR)/game$(ARCH).$(SHLIBEXT) : $(GAME_OBJS)
 	$(CC) $(CFLAGS) $(SHLIBLDFLAGS) -o $@ $(GAME_OBJS)
@@ -506,10 +507,10 @@ $(BUILDDIR)/game/p_view.o :      $(GAME_DIR)/p_view.c
 $(BUILDDIR)/game/p_weapon.o :    $(GAME_DIR)/p_weapon.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/game/q_shared.o :    $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/game/shared.o :      $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/game/m_flash.o :     $(GAME_DIR)/m_flash.c
+$(BUILDDIR)/game/flash.o :       $(SHARED_DIR)/flash.c
 	$(DO_SHLIB_CC)
 
 #############################################################################
@@ -542,7 +543,7 @@ CTF_OBJS = \
 	$(BUILDDIR)/ctf/p_trail.o \
 	$(BUILDDIR)/ctf/p_view.o \
 	$(BUILDDIR)/ctf/p_weapon.o \
-	$(BUILDDIR)/ctf/q_shared.o
+	$(BUILDDIR)/ctf/shared.o
 
 $(BUILDDIR)/ctf/game$(ARCH).$(SHLIBEXT) : $(CTF_OBJS)
 	$(CC) $(CFLAGS) $(SHLIBLDFLAGS) -o $@ $(CTF_OBJS)
@@ -622,7 +623,7 @@ $(BUILDDIR)/ctf/p_view.o :     $(CTF_DIR)/p_view.c
 $(BUILDDIR)/ctf/p_weapon.o :   $(CTF_DIR)/p_weapon.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/ctf/q_shared.o :   $(CTF_DIR)/q_shared.c
+$(BUILDDIR)/ctf/shared.o :     $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_CC)
 
 #############################################################################
@@ -658,7 +659,7 @@ XATRIX_OBJS = \
 	$(BUILDDIR)/xatrix/m_brain.o \
 	$(BUILDDIR)/xatrix/m_chick.o \
 	$(BUILDDIR)/xatrix/m_fixbot.o \
-	$(BUILDDIR)/xatrix/m_flash.o \
+	$(BUILDDIR)/xatrix/flash.o \
 	$(BUILDDIR)/xatrix/m_flipper.o \
 	$(BUILDDIR)/xatrix/m_float.o \
 	$(BUILDDIR)/xatrix/m_flyer.o \
@@ -681,7 +682,7 @@ XATRIX_OBJS = \
 	$(BUILDDIR)/xatrix/p_trail.o \
 	$(BUILDDIR)/xatrix/p_view.o \
 	$(BUILDDIR)/xatrix/p_weapon.o \
-	$(BUILDDIR)/xatrix/q_shared.o
+	$(BUILDDIR)/xatrix/shared.o
 
 $(BUILDDIR)/xatrix/game$(ARCH).$(SHLIBEXT) : $(XATRIX_OBJS)
 	$(CC) $(CFLAGS) $(SHLIBLDFLAGS) -o $@ $(XATRIX_OBJS)
@@ -770,7 +771,7 @@ $(BUILDDIR)/xatrix/m_chick.o :     $(XATRIX_DIR)/m_chick.c
 $(BUILDDIR)/xatrix/m_fixbot.o :    $(XATRIX_DIR)/m_fixbot.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/xatrix/m_flash.o :     $(XATRIX_DIR)/m_flash.c
+$(BUILDDIR)/xatrix/flash.o :       $(SHARED_DIR)/flash.c
 	$(DO_SHLIB_CC)
 
 $(BUILDDIR)/xatrix/m_flipper.o :   $(XATRIX_DIR)/m_flipper.c
@@ -839,7 +840,7 @@ $(BUILDDIR)/xatrix/p_view.o :      $(XATRIX_DIR)/p_view.c
 $(BUILDDIR)/xatrix/p_weapon.o :    $(XATRIX_DIR)/p_weapon.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/xatrix/q_shared.o :    $(XATRIX_DIR)/q_shared.c
+$(BUILDDIR)/xatrix/shared.o :      $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_CC)
 
 
@@ -866,7 +867,7 @@ REF_SOFT_OBJS = \
 	$(BUILDDIR)/ref_soft/r_sprite.o \
 	$(BUILDDIR)/ref_soft/r_surf.o \
 	\
-	$(BUILDDIR)/ref_soft/q_shared.o \
+	$(BUILDDIR)/ref_soft/shared.o \
 	$(BUILDDIR)/ref_soft/q_shirix.o \
 	$(BUILDDIR)/ref_soft/glob.o
 
@@ -928,7 +929,7 @@ $(BUILDDIR)/ref_soft/r_sprite.o :     $(REF_SOFT_DIR)/r_sprite.c
 $(BUILDDIR)/ref_soft/r_surf.o :       $(REF_SOFT_DIR)/r_surf.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/ref_soft/q_shared.o :     $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/ref_soft/shared.o :       $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_CC)
 
 $(BUILDDIR)/ref_soft/q_shirix.o :    $(IRIX_DIR)/q_shirix.c
@@ -957,7 +958,7 @@ REF_GL_OBJS = \
 	\
 	$(BUILDDIR)/ref_gl/qgl_irix.o \
 	$(BUILDDIR)/ref_gl/glw_imp.o \
-	$(BUILDDIR)/ref_gl/q_shared.o \
+	$(BUILDDIR)/ref_gl/shared.o \
 	$(BUILDDIR)/ref_gl/q_shirix.o \
 	$(BUILDDIR)/ref_gl/glob.o
 
@@ -991,16 +992,16 @@ $(BUILDDIR)/ref_gl/gl_rsurf.o :       $(REF_GL_DIR)/gl_rsurf.c
 $(BUILDDIR)/ref_gl/gl_warp.o :        $(REF_GL_DIR)/gl_warp.c
 	$(DO_GL_SHLIB_CC)
 
-$(BUILDDIR)/ref_gl/qgl_irix.o :      $(IRIX_DIR)/qgl_irix.c
+$(BUILDDIR)/ref_gl/qgl_irix.o :       $(IRIX_DIR)/qgl_irix.c
 	$(DO_GL_SHLIB_CC)
 
-$(BUILDDIR)/ref_gl/glw_imp.o :      $(IRIX_DIR)/glw_imp.c
+$(BUILDDIR)/ref_gl/glw_imp.o :        $(IRIX_DIR)/glw_imp.c
 	$(DO_GL_SHLIB_CC)
 
-$(BUILDDIR)/ref_gl/q_shared.o :       $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/ref_gl/shared.o :         $(SHARED_DIR)/shared.c
 	$(DO_GL_SHLIB_CC)
 
-$(BUILDDIR)/ref_gl/q_shirix.o :      $(IRIX_DIR)/q_shirix.c
+$(BUILDDIR)/ref_gl/q_shirix.o :       $(IRIX_DIR)/q_shirix.c
 	$(DO_GL_SHLIB_CC)
 
 $(BUILDDIR)/ref_gl/glob.o :           $(LINUX_DIR)/glob.c

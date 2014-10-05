@@ -273,7 +273,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\game\q_shared.c">
+    <ClCompile Include="..\shared\shared.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
     </ClCompile>
@@ -437,7 +437,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\client\ref.h" />
-    <ClInclude Include="..\game\q_shared.h" />
+    <ClInclude Include="..\shared\shared.h" />
     <ClInclude Include="..\common\common.h" />
     <ClInclude Include="..\common\files.h" />
     <ClInclude Include="..\win32\rw_win.h" />

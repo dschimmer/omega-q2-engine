@@ -329,7 +329,7 @@
     <ClCompile Include="p_weapon.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /MTd   /MTd </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="q_shared.c">
+    <ClCompile Include="../shared/shared.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /MTd   /MTd </AdditionalOptions>
     </ClCompile>
   </ItemGroup>
@@ -339,7 +339,7 @@
     <ClInclude Include="g_local.h" />
     <ClInclude Include="m_player.h" />
     <ClInclude Include="p_menu.h" />
-    <ClInclude Include="q_shared.h" />
+    <ClInclude Include="../shared/shared.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctf.def" />

@@ -337,11 +337,11 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="game\m_flash.c">
+    <ClCompile Include="shared\flash.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="game\q_shared.c">
+    <ClCompile Include="shared\shared.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
     </ClCompile>
@@ -464,7 +464,7 @@
     <ClInclude Include="client\sound.h" />
     <ClInclude Include="client\vid.h" />
     <ClInclude Include="game\game.h" />
-    <ClInclude Include="game\q_shared.h" />
+    <ClInclude Include="shared\shared.h" />
     <ClInclude Include="common\common.h" />
     <ClInclude Include="common\files.h" />
     <ClInclude Include="server\server.h" />

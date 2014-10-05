@@ -42,6 +42,7 @@ NULL_DIR=$(MOUNT_DIR)/null
 CTF_DIR=$(MOUNT_DIR)/ctf
 XATRIX_DIR=$(MOUNT_DIR)/xatrix
 ROGUE_DIR=$(MOUNT_DIR)/rogue
+SHARED_DIR=$(MOUNT_DIR)/shared
 
 MESA_DIR=/usr/local/src/Mesa-2.6
 
@@ -160,7 +161,7 @@ QUAKE2_OBJS = \
 	$(BUILDDIR)/client/snd_mem.o \
 	$(BUILDDIR)/client/snd_mix.o \
 	$(BUILDDIR)/client/qmenu.o \
-	$(BUILDDIR)/client/m_flash.o \
+	$(BUILDDIR)/client/flash.o \
 	\
 	$(BUILDDIR)/client/cmd.o \
 	$(BUILDDIR)/client/cmodel.o \
@@ -189,7 +190,7 @@ QUAKE2_OBJS = \
 	$(BUILDDIR)/client/glob.o \
 	$(BUILDDIR)/client/net_udp.o \
 	\
-	$(BUILDDIR)/client/q_shared.o \
+	$(BUILDDIR)/client/shared.o \
 	$(BUILDDIR)/client/pmove.o
 
 ifeq ($(ARCH),axp)
@@ -259,7 +260,7 @@ $(BUILDDIR)/client/snd_mix.o :    $(CLIENT_DIR)/snd_mix.c
 $(BUILDDIR)/client/qmenu.o :      $(CLIENT_DIR)/qmenu.c
 	$(DO_CC)
 
-$(BUILDDIR)/client/m_flash.o :    $(GAME_DIR)/m_flash.c
+$(BUILDDIR)/client/flash.o :      $(SHARED_DIR)/flash.c
 	$(DO_CC)
 
 $(BUILDDIR)/client/cmd.o :        $(COMMON_DIR)/cmd.c
@@ -286,7 +287,7 @@ $(BUILDDIR)/client/md4.o :        $(COMMON_DIR)/md4.c
 $(BUILDDIR)/client/net_chan.o :   $(COMMON_DIR)/net_chan.c
 	$(DO_CC)
 
-$(BUILDDIR)/client/q_shared.o :   $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/client/shared.o :     $(SHARED_DIR)/shared.c
 	$(DO_DEBUG_CC)
 
 $(BUILDDIR)/client/pmove.o :      $(COMMON_DIR)/pmove.c
@@ -372,7 +373,7 @@ Q2DED_OBJS = \
 	$(BUILDDIR)/ded/glob.o \
 	$(BUILDDIR)/ded/net_udp.o \
 	\
-	$(BUILDDIR)/ded/q_shared.o \
+	$(BUILDDIR)/ded/shared.o \
 	$(BUILDDIR)/ded/pmove.o \
 	\
 	$(BUILDDIR)/ded/cl_null.o \
@@ -405,7 +406,7 @@ $(BUILDDIR)/ded/md4.o :        $(COMMON_DIR)/md4.c
 $(BUILDDIR)/ded/net_chan.o :   $(COMMON_DIR)/net_chan.c
 	$(DO_DED_CC)
 
-$(BUILDDIR)/ded/q_shared.o :   $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/ded/shared.o :     $(SHARED_DIR)/shared.c
 	$(DO_DED_DEBUG_CC)
 
 $(BUILDDIR)/ded/pmove.o :      $(COMMON_DIR)/pmove.c
@@ -458,7 +459,7 @@ $(BUILDDIR)/ded/cl_null.o     : $(NULL_DIR)/cl_null.c
 #############################################################################
 
 GAME_OBJS = \
-	$(BUILDDIR)/game/q_shared.o \
+	$(BUILDDIR)/game/shared.o \
 	$(BUILDDIR)/game/g_ai.o \
 	$(BUILDDIR)/game/p_client.o \
 	$(BUILDDIR)/game/g_cmds.o \
@@ -505,7 +506,7 @@ GAME_OBJS = \
 	$(BUILDDIR)/game/p_trail.o \
 	$(BUILDDIR)/game/p_view.o \
 	$(BUILDDIR)/game/p_weapon.o \
-	$(BUILDDIR)/game/m_flash.o
+	$(BUILDDIR)/game/flash.o
 
 $(BUILDDIR)/game$(ARCH).$(SHLIBEXT) : $(GAME_OBJS)
 	$(CC) $(CFLAGS) $(SHLIBLDFLAGS) -o $@ $(GAME_OBJS)
@@ -648,10 +649,10 @@ $(BUILDDIR)/game/p_view.o :      $(GAME_DIR)/p_view.c
 $(BUILDDIR)/game/p_weapon.o :    $(GAME_DIR)/p_weapon.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/game/q_shared.o :    $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/game/shared.o :      $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_DEBUG_CC)
 
-$(BUILDDIR)/game/m_flash.o :     $(GAME_DIR)/m_flash.c
+$(BUILDDIR)/game/flash.o :       $(SHARED_DIR)/flash.c
 	$(DO_SHLIB_CC)
 
 #############################################################################
@@ -684,7 +685,7 @@ CTF_OBJS = \
 	$(BUILDDIR)/ctf/p_trail.o \
 	$(BUILDDIR)/ctf/p_view.o \
 	$(BUILDDIR)/ctf/p_weapon.o \
-	$(BUILDDIR)/ctf/q_shared.o
+	$(BUILDDIR)/ctf/shared.o
 
 $(BUILDDIR)/ctf/game$(ARCH).$(SHLIBEXT) : $(CTF_OBJS)
 	$(CC) $(CFLAGS) $(SHLIBLDFLAGS) -o $@ $(CTF_OBJS)
@@ -764,7 +765,7 @@ $(BUILDDIR)/ctf/p_view.o :     $(CTF_DIR)/p_view.c
 $(BUILDDIR)/ctf/p_weapon.o :   $(CTF_DIR)/p_weapon.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/ctf/q_shared.o :   $(CTF_DIR)/q_shared.c
+$(BUILDDIR)/ctf/shared.o :     $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_DEBUG_CC)
 
 #############################################################################
@@ -800,7 +801,7 @@ XATRIX_OBJS = \
 	$(BUILDDIR)/xatrix/m_brain.o \
 	$(BUILDDIR)/xatrix/m_chick.o \
 	$(BUILDDIR)/xatrix/m_fixbot.o \
-	$(BUILDDIR)/xatrix/m_flash.o \
+	$(BUILDDIR)/xatrix/flash.o \
 	$(BUILDDIR)/xatrix/m_flipper.o \
 	$(BUILDDIR)/xatrix/m_float.o \
 	$(BUILDDIR)/xatrix/m_flyer.o \
@@ -823,7 +824,7 @@ XATRIX_OBJS = \
 	$(BUILDDIR)/xatrix/p_trail.o \
 	$(BUILDDIR)/xatrix/p_view.o \
 	$(BUILDDIR)/xatrix/p_weapon.o \
-	$(BUILDDIR)/xatrix/q_shared.o
+	$(BUILDDIR)/xatrix/shared.o
 
 $(BUILDDIR)/xatrix/game$(ARCH).$(SHLIBEXT) : $(XATRIX_OBJS)
 	$(CC) $(CFLAGS) $(SHLIBLDFLAGS) -o $@ $(XATRIX_OBJS)
@@ -912,7 +913,7 @@ $(BUILDDIR)/xatrix/m_chick.o :     $(XATRIX_DIR)/m_chick.c
 $(BUILDDIR)/xatrix/m_fixbot.o :    $(XATRIX_DIR)/m_fixbot.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/xatrix/m_flash.o :     $(XATRIX_DIR)/m_flash.c
+$(BUILDDIR)/xatrix/flash.o :       $(SHARED_DIR)/flash.c
 	$(DO_SHLIB_CC)
 
 $(BUILDDIR)/xatrix/m_flipper.o :   $(XATRIX_DIR)/m_flipper.c
@@ -981,7 +982,7 @@ $(BUILDDIR)/xatrix/p_view.o :      $(XATRIX_DIR)/p_view.c
 $(BUILDDIR)/xatrix/p_weapon.o :    $(XATRIX_DIR)/p_weapon.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/xatrix/q_shared.o :    $(XATRIX_DIR)/q_shared.c
+$(BUILDDIR)/xatrix/shared.o :      $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_DEBUG_CC)
 
 #############################################################################
@@ -1025,7 +1026,7 @@ ROGUE_OBJS = \
 	$(BUILDDIR)/rogue/m_brain.o \
 	$(BUILDDIR)/rogue/m_carrier.o \
 	$(BUILDDIR)/rogue/m_chick.o \
-	$(BUILDDIR)/rogue/m_flash.o \
+	$(BUILDDIR)/rogue/flash.o \
 	$(BUILDDIR)/rogue/m_flipper.o \
 	$(BUILDDIR)/rogue/m_float.o \
 	$(BUILDDIR)/rogue/m_flyer.o \
@@ -1050,7 +1051,7 @@ ROGUE_OBJS = \
 	$(BUILDDIR)/rogue/p_trail.o \
 	$(BUILDDIR)/rogue/p_view.o \
 	$(BUILDDIR)/rogue/p_weapon.o \
-	$(BUILDDIR)/rogue/q_shared.o
+	$(BUILDDIR)/rogue/shared.o
 
 $(BUILDDIR)/rogue/game$(ARCH).$(SHLIBEXT) : $(ROGUE_OBJS)
 	$(CC) $(CFLAGS) $(SHLIBLDFLAGS) -o $@ $(ROGUE_OBJS)
@@ -1163,7 +1164,7 @@ $(BUILDDIR)/rogue/m_carrier.o :    $(ROGUE_DIR)/m_carrier.c
 $(BUILDDIR)/rogue/m_chick.o :      $(ROGUE_DIR)/m_chick.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/rogue/m_flash.o :      $(ROGUE_DIR)/m_flash.c
+$(BUILDDIR)/rogue/flash.o :        $(SHARED_DIR)/flash.c
 	$(DO_SHLIB_CC)
 
 $(BUILDDIR)/rogue/m_flipper.o :    $(ROGUE_DIR)/m_flipper.c
@@ -1238,7 +1239,7 @@ $(BUILDDIR)/rogue/p_view.o :       $(ROGUE_DIR)/p_view.c
 $(BUILDDIR)/rogue/p_weapon.o :     $(ROGUE_DIR)/p_weapon.c
 	$(DO_SHLIB_CC)
 
-$(BUILDDIR)/rogue/q_shared.o :     $(ROGUE_DIR)/q_shared.c
+$(BUILDDIR)/rogue/shared.o :       $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_DEBUG_CC)
 
 
@@ -1279,7 +1280,7 @@ REF_SOFT_OBJS = \
 	$(BUILDDIR)/ref_soft/r_varsa.o \
 	$(BUILDDIR)/ref_soft/sys_dosa.o \
 	\
-	$(BUILDDIR)/ref_soft/q_shared.o \
+	$(BUILDDIR)/ref_soft/shared.o \
 	$(BUILDDIR)/ref_soft/q_shlinux.o \
 	$(BUILDDIR)/ref_soft/glob.o
 
@@ -1383,7 +1384,7 @@ $(BUILDDIR)/ref_soft/r_varsa.o :      $(LINUX_DIR)/r_varsa.s
 $(BUILDDIR)/ref_soft/sys_dosa.o :     $(LINUX_DIR)/sys_dosa.s
 	$(DO_SHLIB_AS)
 
-$(BUILDDIR)/ref_soft/q_shared.o :     $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/ref_soft/shared.o :       $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_DEBUG_CC)
 
 $(BUILDDIR)/ref_soft/q_shlinux.o :    $(LINUX_DIR)/q_shlinux.c
@@ -1420,7 +1421,7 @@ REF_GL_OBJS = \
 	$(BUILDDIR)/ref_gl/gl_warp.o \
 	\
 	$(BUILDDIR)/ref_gl/qgl_linux.o \
-	$(BUILDDIR)/ref_gl/q_shared.o \
+	$(BUILDDIR)/ref_gl/shared.o \
 	$(BUILDDIR)/ref_gl/q_shlinux.o \
 	$(BUILDDIR)/ref_gl/glob.o
 
@@ -1474,13 +1475,13 @@ $(BUILDDIR)/ref_gl/qgl_linux.o :      $(LINUX_DIR)/qgl_linux.c
 $(BUILDDIR)/ref_gl/gl_fxmesa.o :      $(LINUX_DIR)/gl_fxmesa.c
 	$(DO_GL_SHLIB_CC)
 
-$(BUILDDIR)/ref_gl/gl_glx.o :      $(LINUX_DIR)/gl_glx.c
+$(BUILDDIR)/ref_gl/gl_glx.o :         $(LINUX_DIR)/gl_glx.c
 	$(DO_GL_SHLIB_CC)
 
 $(BUILDDIR)/ref_gl/rw_in_svgalib.o :  $(LINUX_DIR)/rw_in_svgalib.c
 	$(DO_GL_SHLIB_CC)
 
-$(BUILDDIR)/ref_gl/q_shared.o :       $(GAME_DIR)/q_shared.c
+$(BUILDDIR)/ref_gl/shared.o :         $(SHARED_DIR)/shared.c
 	$(DO_SHLIB_DEBUG_CC)
 
 $(BUILDDIR)/ref_gl/q_shlinux.o :      $(LINUX_DIR)/q_shlinux.c
