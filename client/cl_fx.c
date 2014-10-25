@@ -436,8 +436,10 @@ void CL_ParseMuzzleFlash2 (void)
 	char		soundname[64];
 
 	ent = MSG_ReadShort (&net_message);
-	if (ent < 1 || ent >= MAX_EDICTS)
-		Com_Error (ERR_DROP, "CL_ParseMuzzleFlash2: bad entity");
+    if (ent < 1 || ent >= MAX_EDICTS) {
+        Com_Error(ERR_DROP, "CL_ParseMuzzleFlash2: bad entity");
+        return;
+    }
 
 	flash_number = MSG_ReadByte (&net_message);
 

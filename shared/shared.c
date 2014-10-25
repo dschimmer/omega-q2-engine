@@ -1177,7 +1177,7 @@ void Com_PageInMemory (byte *buffer, int size)
 */
 
 // FIXME: replace all Q_stricmp with Q_strcasecmp
-int Q_stricmp (char *s1, char *s2)
+int Q_stricmp(const char *s1, const char *s2)
 {
 #if defined(WIN32)
 	return _stricmp (s1, s2);
@@ -1187,9 +1187,9 @@ int Q_stricmp (char *s1, char *s2)
 }
 
 
-int Q_strncasecmp (char *s1, char *s2, int n)
+int Q_strncasecmp(const char *s1, const char *s2, int n)
 {
-	int		c1, c2;
+	int c1, c2;
 	
 	do
 	{
@@ -1199,21 +1199,25 @@ int Q_strncasecmp (char *s1, char *s2, int n)
 		if (!n--)
 			return 0;		// strings are equal until end point
 		
-		if (c1 != c2)
-		{
-			if (c1 >= 'a' && c1 <= 'z')
-				c1 -= ('a' - 'A');
-			if (c2 >= 'a' && c2 <= 'z')
-				c2 -= ('a' - 'A');
-			if (c1 != c2)
-				return -1;		// strings not equal
+		if (c1 != c2) {
+            if (c1 >= 'a' && c1 <= 'z') {
+                c1 -= ('a' - 'A');
+            }
+
+            if (c2 >= 'a' && c2 <= 'z') {
+                c2 -= ('a' - 'A');
+            }
+
+            if (c1 != c2) {
+                return -1;		// strings not equal
+            }
 		}
 	} while (c1);
 	
 	return 0;		// strings are equal
 }
 
-int Q_strcasecmp (char *s1, char *s2)
+int Q_strcasecmp(const char *s1, const char *s2)
 {
 	return Q_strncasecmp (s1, s2, 99999);
 }
