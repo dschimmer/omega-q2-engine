@@ -1475,7 +1475,7 @@ void Com_Init()
 
     FS_InitFilesystem();
 
-    Cbuf_AddText("exec default.cfg\n");
+    Cbuf_AddText("exec default_modern.cfg\n");
     Cbuf_AddText("exec config.cfg\n");
 
     Cbuf_AddEarlyCommands(true);
@@ -1492,7 +1492,7 @@ void Com_Init()
     developer = Cvar_Get("developer", "0", 0);
     timescale = Cvar_Get("timescale", "1", 0);
     fixedtime = Cvar_Get("fixedtime", "0", 0);
-    logfile_active = Cvar_Get("logfile", "0", 0);
+    logfile_active = Cvar_Get("logfile", "3", 0);
     showtrace = Cvar_Get("showtrace", "0", 0);
 #ifdef DEDICATED_ONLY
     dedicated = Cvar_Get ("dedicated", "1", CVAR_NOSET);

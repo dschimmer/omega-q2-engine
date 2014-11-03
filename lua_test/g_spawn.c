@@ -79,7 +79,7 @@ void SP_target_crosslevel_trigger (edict_t *ent);
 void SP_target_crosslevel_target (edict_t *ent);
 void SP_target_laser (edict_t *self);
 void SP_target_help (edict_t *ent);
-//void SP_target_actor (edict_t *ent);
+void SP_target_actor (edict_t *ent);
 void SP_target_lightramp (edict_t *self);
 void SP_target_earthquake (edict_t *ent);
 void SP_target_character (edict_t *ent);
@@ -96,14 +96,14 @@ void SP_info_notnull (edict_t *self);
 void SP_path_corner (edict_t *self);
 void SP_point_combat (edict_t *self);
 
-void SP_misc_explobox (edict_t *self);
+//void SP_misc_explobox (edict_t *self);
 void SP_misc_banner (edict_t *self);
 void SP_misc_satellite_dish (edict_t *self);
-//void SP_misc_actor (edict_t *self);
+void SP_misc_actor (edict_t *self);
 void SP_misc_gib_arm (edict_t *self);
 void SP_misc_gib_leg (edict_t *self);
 void SP_misc_gib_head (edict_t *self);
-void SP_misc_insane (edict_t *self);
+
 void SP_misc_deadsoldier (edict_t *self);
 void SP_misc_viper (edict_t *self);
 void SP_misc_viper_bomb (edict_t *self);
@@ -112,38 +112,6 @@ void SP_misc_strogg_ship (edict_t *self);
 void SP_misc_teleporter (edict_t *self);
 void SP_misc_teleporter_dest (edict_t *self);
 void SP_misc_blackhole (edict_t *self);
-void SP_misc_eastertank (edict_t *self);
-void SP_misc_easterchick (edict_t *self);
-void SP_misc_easterchick2 (edict_t *self);
-
-void SP_monster_berserk (edict_t *self);
-void SP_monster_gladiator (edict_t *self);
-void SP_monster_gunner (edict_t *self);
-void SP_monster_infantry (edict_t *self);
-void SP_monster_soldier_light (edict_t *self);
-void SP_monster_soldier (edict_t *self);
-void SP_monster_soldier_ss (edict_t *self);
-void SP_monster_tank (edict_t *self);
-void SP_monster_medic (edict_t *self);
-void SP_monster_flipper (edict_t *self);
-void SP_monster_chick (edict_t *self);
-void SP_monster_parasite (edict_t *self);
-void SP_monster_flyer (edict_t *self);
-void SP_monster_brain (edict_t *self);
-void SP_monster_floater (edict_t *self);
-void SP_monster_hover (edict_t *self);
-void SP_monster_mutant (edict_t *self);
-void SP_monster_supertank (edict_t *self);
-void SP_monster_boss2 (edict_t *self);
-void SP_monster_jorg (edict_t *self);
-void SP_monster_boss3_stand (edict_t *self);
-
-void SP_monster_commander_body (edict_t *self);
-
-void SP_turret_breach (edict_t *self);
-void SP_turret_base (edict_t *self);
-void SP_turret_driver (edict_t *self);
-
 
 spawn_t	spawns[] = {
 	{"item_health", SP_item_health},
@@ -155,10 +123,6 @@ spawn_t	spawns[] = {
 	{"info_player_deathmatch", SP_info_player_deathmatch},
 	{"info_player_coop", SP_info_player_coop},
 	{"info_player_intermission", SP_info_player_intermission},
-//ZOID
-	{"info_player_team1", SP_info_player_team1},
-	{"info_player_team2", SP_info_player_team2},
-//ZOID
 
 	{"func_plat", SP_func_plat},
 	{"func_button", SP_func_button},
@@ -202,9 +166,7 @@ spawn_t	spawns[] = {
 	{"target_crosslevel_target", SP_target_crosslevel_target},
 	{"target_laser", SP_target_laser},
 	{"target_help", SP_target_help},
-#if 0 // remove monster code
-	{"target_actor", SP_target_actor},
-#endif
+//	{"target_actor", SP_target_actor},
 	{"target_lightramp", SP_target_lightramp},
 	{"target_earthquake", SP_target_earthquake},
 	{"target_character", SP_target_character},
@@ -222,22 +184,13 @@ spawn_t	spawns[] = {
 	{"path_corner", SP_path_corner},
 	{"point_combat", SP_point_combat},
 
-	{"misc_explobox", SP_misc_explobox},
+//	{"misc_explobox", SP_misc_explobox},
 	{"misc_banner", SP_misc_banner},
-//ZOID
-	{"misc_ctf_banner", SP_misc_ctf_banner},
-	{"misc_ctf_small_banner", SP_misc_ctf_small_banner},
-//ZOID
 	{"misc_satellite_dish", SP_misc_satellite_dish},
-#if 0 // remove monster code
-	{"misc_actor", SP_misc_actor},
-#endif
+//	{"misc_actor", SP_misc_actor},
 	{"misc_gib_arm", SP_misc_gib_arm},
 	{"misc_gib_leg", SP_misc_gib_leg},
 	{"misc_gib_head", SP_misc_gib_head},
-#if 0 // remove monster code
-	{"misc_insane", SP_misc_insane},
-#endif
 	{"misc_deadsoldier", SP_misc_deadsoldier},
 	{"misc_viper", SP_misc_viper},
 	{"misc_viper_bomb", SP_misc_viper_bomb},
@@ -245,47 +198,9 @@ spawn_t	spawns[] = {
 	{"misc_strogg_ship", SP_misc_strogg_ship},
 	{"misc_teleporter", SP_misc_teleporter},
 	{"misc_teleporter_dest", SP_misc_teleporter_dest},
-//ZOID
-	{"trigger_teleport", SP_trigger_teleport},
-	{"info_teleport_destination", SP_info_teleport_destination},
-//ZOID
 	{"misc_blackhole", SP_misc_blackhole},
-	{"misc_eastertank", SP_misc_eastertank},
-	{"misc_easterchick", SP_misc_easterchick},
-	{"misc_easterchick2", SP_misc_easterchick2},
 
-#if 0 // remove monster code
-	{"monster_berserk", SP_monster_berserk},
-	{"monster_gladiator", SP_monster_gladiator},
-	{"monster_gunner", SP_monster_gunner},
-	{"monster_infantry", SP_monster_infantry},
-	{"monster_soldier_light", SP_monster_soldier_light},
-	{"monster_soldier", SP_monster_soldier},
-	{"monster_soldier_ss", SP_monster_soldier_ss},
-	{"monster_tank", SP_monster_tank},
-	{"monster_tank_commander", SP_monster_tank},
-	{"monster_medic", SP_monster_medic},
-	{"monster_flipper", SP_monster_flipper},
-	{"monster_chick", SP_monster_chick},
-	{"monster_parasite", SP_monster_parasite},
-	{"monster_flyer", SP_monster_flyer},
-	{"monster_brain", SP_monster_brain},
-	{"monster_floater", SP_monster_floater},
-	{"monster_hover", SP_monster_hover},
-	{"monster_mutant", SP_monster_mutant},
-	{"monster_supertank", SP_monster_supertank},
-	{"monster_boss2", SP_monster_boss2},
-	{"monster_boss3_stand", SP_monster_boss3_stand},
-	{"monster_jorg", SP_monster_jorg},
-
-	{"monster_commander_body", SP_monster_commander_body},
-
-	{"turret_breach", SP_turret_breach},
-	{"turret_base", SP_turret_base},
-	{"turret_driver", SP_turret_driver},
-#endif
-
-	{NULL, NULL}
+    {NULL, NULL}
 };
 
 /*
@@ -384,7 +299,7 @@ void ED_ParseField (char *key, char *value, edict_t *ent)
 
 	for (f=fields ; f->name ; f++)
 	{
-		if (!Q_stricmp(f->name, key))
+		if (!(f->flags & FFL_NOSPAWN) && !Q_stricmp(f->name, key))
 		{	// found it
 			if (f->flags & FFL_SPAWNTEMP)
 				b = (byte *)&st;
@@ -585,9 +500,9 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 		else
 			ent = G_Spawn ();
 		entities = ED_ParseEdict (entities, ent);
-		
+
 		// yet another map hack
-		if (!stricmp(level.mapname, "command") && !stricmp(ent->classname, "trigger_once") && !stricmp(ent->model, "*27"))
+		if (!Q_stricmp(level.mapname, "command") && !Q_stricmp(ent->classname, "trigger_once") && !Q_stricmp(ent->model, "*27"))
 			ent->spawnflags &= ~SPAWNFLAG_NOT_HARD;
 
 		// remove things (except the world) from different skill levels or deathmatch
@@ -624,13 +539,19 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 
 	gi.dprintf ("%i entities inhibited\n", inhibit);
 
+#ifdef DEBUG
+	i = 1;
+	ent = EDICT_NUM(i);
+	while (i < globals.num_edicts) {
+		if (ent->inuse != 0 || ent->inuse != 1)
+			Com_DPrintf("Invalid entity %d\n", i);
+		i++, ent++;
+	}
+#endif
+
 	G_FindTeams ();
 
 	PlayerTrail_Init ();
-
-//ZOID
-	CTFSpawn();
-//ZOID
 }
 
 
@@ -777,7 +698,23 @@ char *dm_statusbar =
 //  frags
 "xr	-50 "
 "yt 2 "
-"num 3 14"
+"num 3 14 "
+
+// spectator
+"if 17 "
+  "xv 0 "
+  "yb -58 "
+  "string2 \"SPECTATOR MODE\" "
+"endif "
+
+// chase camera
+"if 16 "
+  "xv 0 "
+  "yb -68 "
+  "string \"Chasing\" "
+  "xv 64 "
+  "stat_string 16 "
+"endif "
 ;
 
 
@@ -835,13 +772,7 @@ void SP_worldspawn (edict_t *ent)
 
 	// status bar program
 	if (deathmatch->value)
-//ZOID
-		if (ctf->value) {
-			gi.configstring (CS_STATUSBAR, ctf_statusbar);
-			CTFPrecache();
-		} else
-//ZOID
-			gi.configstring (CS_STATUSBAR, dm_statusbar);
+		gi.configstring (CS_STATUSBAR, dm_statusbar);
 	else
 		gi.configstring (CS_STATUSBAR, single_statusbar);
 
@@ -907,7 +838,6 @@ void SP_worldspawn (edict_t *ent)
 	gi.modelindex ("#w_hyperblaster.md2");
 	gi.modelindex ("#w_railgun.md2");
 	gi.modelindex ("#w_bfg.md2");
-	gi.modelindex ("#w_grapple.md2");
 
 	//-------------------
 
