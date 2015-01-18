@@ -21,6 +21,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "common.h"
 #include <setjmp.h>
 
+#ifdef ANDROID
+
+#include <android/log.h>
+#include <android_native_app_glue.h>
+
+#endif
+
 #define	MAXPRINTMSG	4096
 
 #define MAX_NUM_ARGVS	50
@@ -126,6 +133,7 @@ void Com_Printf (char *fmt, ...)
 	// also echo to debugging console
 	Sys_ConsoleOutput (msg);
 
+#ifndef ANDROID
 	// logfile
 	if (logfile_active && logfile_active->value)
 	{
@@ -144,6 +152,9 @@ void Com_Printf (char *fmt, ...)
 		if (logfile_active->value > 1)
 			fflush (logfile);		// force it to save every time
 	}
+#else
+    __android_log_write(ANDROID_LOG_DEBUG, "quake2", msg);
+#endif
 }
 
 
@@ -159,8 +170,8 @@ void Com_DPrintf (char *fmt, ...)
 	va_list		argptr;
 	char		msg[MAXPRINTMSG];
 		
-	if (!developer || !developer->value)
-		return;			// don't confuse non-developers with techie stuff...
+//	if (!developer || !developer->value)
+//		return;			// don't confuse non-developers with techie stuff...
 
 	va_start (argptr,fmt);
 	vsprintf (msg,fmt,argptr);

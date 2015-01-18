@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "common.h"
-
+#include <errno.h>
 // define this to dissalow any data but the demo pak file
 //#define	NO_ADDONS
 
@@ -455,10 +455,12 @@ pack_t *FS_LoadPackFile (char *packfile)
 	FILE			*packhandle;
 	dpackfile_t		info[MAX_FILES_IN_PACK];
 	unsigned		checksum;
-
+errno = 0;
 	packhandle = fopen(packfile, "rb");
-	if (!packhandle)
+	if (!packhandle) {
+	    Com_Printf("File Error: %s %d", packfile, errno);
 		return NULL;
+	}
 
 	fread (&header, 1, sizeof(header), packhandle);
 	if (LittleLong(header.ident) != IDPAKHEADER)
@@ -866,10 +868,19 @@ void FS_InitFilesystem (void)
 	// start up with baseq2 by default
 	//
 	FS_AddGameDirectory (va("%s/"BASEDIRNAME, fs_basedir->string) );
+	
+#ifdef ANDROID
+    FS_AddGameDirectory(va("/sdcard/"BASEDIRNAME));
+    FS_AddGameDirectory(va("/"BASEDIRNAME));
+    FS_AddGameDirectory(va("/storage/emulated/0/"BASEDIRNAME));
+    FS_AddGameDirectory(va("/data/data/com.example.quake2/files/"BASEDIRNAME));
+    FS_AddGameDirectory(va("/storage/emulated/0/Android/data/com.example.quake2/files/"BASEDIRNAME));
+    FS_AddGameDirectory(va("/sdcard/Android/data/com.example.quake2/files/"BASEDIRNAME));
+#endif
 
 	// any set gamedirs will be freed up to here
 	fs_base_searchpaths = fs_searchpaths;
-
+Com_Printf("search-path: %s", fs_base_searchpaths);
 	// check for game override
 	fs_gamedirvar = Cvar_Get ("game", "", CVAR_LATCH|CVAR_SERVERINFO);
 	if (fs_gamedirvar->string[0])
