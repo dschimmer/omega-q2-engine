@@ -1,0 +1,1 @@
+This folder contains jni interfaces to Java util classes, yippee!
