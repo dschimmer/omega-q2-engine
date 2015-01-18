@@ -636,7 +636,7 @@ void R_DrawParticles (void)
     qglEnableClientState(GL_VERTEX_ARRAY);
     qglVertexPointer(3, GL_FLOAT, 0, vertices);
     
-    for (i = 0, p = r_newrefdef.particles < r_newrefdef.num_particles; i++, p++) {
+    for (i = 0, p = r_newrefdef.particles; i < r_newrefdef.num_particles; i++, p++) {
         *(int *)color = d_8to24table[p->color];
         color[3] = p->alpha * 255;
         
@@ -669,8 +669,7 @@ void R_DrawParticles (void)
     qglColorPointer(4, GL_UNSIGNED_BYTE, sizeof(blah), &vertices[0].r);
     
     //float *pVert = vertices;
-    
-    for (i = 0, p = r_newrefdef.particles; i < r_newrefdef.num_particles, i++; p++) {
+    for (i = 0, p = r_newrefdef.particles; i < r_newrefdef.num_particles; i++, p++) {
         //*(int *)color = d_8to24table[p->color];
         //color[3] = p->alpha * 255;
         
@@ -1298,7 +1297,7 @@ void R_Register(void)
     gl_showtris = ri.Cvar_Get ("gl_showtris", "0", 0);
     gl_ztrick = ri.Cvar_Get ("gl_ztrick", "0", 0);
     gl_finish = ri.Cvar_Get ("gl_finish", "0", CVAR_ARCHIVE);
-    gl_clear = ri.Cvar_Get ("gl_clear", "0", 0);
+    gl_clear = ri.Cvar_Get ("gl_clear", "1", 0);
     gl_cull = ri.Cvar_Get ("gl_cull", "1", 0);
     gl_polyblend = ri.Cvar_Get ("gl_polyblend", "1", 0);
     gl_flashblend = ri.Cvar_Get ("gl_flashblend", "0", 0);

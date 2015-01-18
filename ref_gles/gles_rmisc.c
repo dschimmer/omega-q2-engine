@@ -214,6 +214,7 @@ void GL_SetDefaultState(void)
     qglPointParameterf(GL_POINT_SIZE_MIN, gl_particle_min_size->value);
     qglPointParameterf(GL_POINT_SIZE_MAX, gl_particle_max_size->value);
     qglPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuations);
+
 #if 0
     if ( qglColorTableEXT && gl_ext_palettedtexture->value )
     {
