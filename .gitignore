@@ -185,3 +185,6 @@ FakesAssemblies/
 # Linux build
 [Dd]ebugi386
 [Rr]eleasei386
+
+# Android build
+libs/
