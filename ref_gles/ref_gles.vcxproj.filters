@@ -15,84 +15,78 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gl_draw.c">
+    <ClCompile Include="gles_draw.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_image.c">
+    <ClCompile Include="gles_image.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_light.c">
+    <ClCompile Include="gles_light.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_mesh.c">
+    <ClCompile Include="gles_mesh.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_model.c">
+    <ClCompile Include="gles_model.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_rmain.c">
+    <ClCompile Include="gles_rmain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_rmisc.c">
+    <ClCompile Include="gles_rmisc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_rsurf.c">
+    <ClCompile Include="gles_rsurf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gl_warp.c">
+    <ClCompile Include="gles_warp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\win32\glw_imp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game\q_shared.c">
+    <ClCompile Include="..\shared\shared.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\win32\q_shwin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\win32\qgl_win.c">
+    <ClCompile Include="..\win32\qgles_win.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="anorms.h">
+    <ClInclude Include="header\anorms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="anormtab.h">
+    <ClInclude Include="header\anormtab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gl_local.h">
+    <ClInclude Include="header\gles_local.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gl_model.h">
+    <ClInclude Include="header\gles_model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\win32\glw_win.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\game\q_shared.h">
+    <ClInclude Include="..\shared\shared.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\qcommon\qcommon.h">
+    <ClInclude Include="..\common\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\qcommon\qfiles.h">
+    <ClInclude Include="..\common\files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="qgl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qmenu.h">
+    <ClInclude Include="header\qgles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\client\ref.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ref_gl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="warpsin.h">
+    <ClInclude Include="header\warpsin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\win32\winquake.h">
@@ -100,7 +94,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="ref_gl.def">
+    <CustomBuild Include="ref_gles.def">
       <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>

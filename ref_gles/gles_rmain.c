@@ -659,9 +659,13 @@ void R_DrawParticles (void)
         float x, y, z;
         unsigned char r, g, b, a;
     } blah;
-    
+
+#ifdef _WIN32
+    blah *vertices = malloc(r_newrefdef.num_particles * sizeof(blah));
+#else
     blah vertices[r_newrefdef.num_particles];
-    
+#endif
+
     qglEnableClientState(GL_VERTEX_ARRAY);
     qglVertexPointer(3, GL_FLOAT, sizeof(blah), vertices);
     
@@ -698,6 +702,10 @@ void R_DrawParticles (void)
     
     qglDisableClientState(GL_COLOR_ARRAY);
     qglDisableClientState(GL_VERTEX_ARRAY);
+
+#ifdef _WIN32
+    if (vertices) free(vertices);
+#endif
 
 #endif
     

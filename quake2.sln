@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "quake2", "quake2.vcxproj", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ref_gl", "ref_gl\ref_gl.vcxproj", "{0C008B01-4AEA-4C81-9E89-39662E33C05D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ref_gles", "ref_gles\ref_gles.vcxproj", "{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ref_soft", "ref_soft\ref_soft.vcxproj", "{5C926976-EF04-4063-B6CB-14AA1E6FBD44}"
 EndProject
 Global
@@ -62,6 +64,16 @@ Global
 		{0C008B01-4AEA-4C81-9E89-39662E33C05D}.Release|Win32.Build.0 = Release|Win32
 		{0C008B01-4AEA-4C81-9E89-39662E33C05D}.Template|Win32.ActiveCfg = Template|Win32
 		{0C008B01-4AEA-4C81-9E89-39662E33C05D}.Template|Win32.Build.0 = Template|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Debug Alpha|Win32.ActiveCfg = Debug Alpha|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Debug Alpha|Win32.Build.0 = Debug Alpha|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Debug|Win32.Build.0 = Debug|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Release Alpha|Win32.ActiveCfg = Release Alpha|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Release Alpha|Win32.Build.0 = Release Alpha|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Release|Win32.ActiveCfg = Release|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Release|Win32.Build.0 = Release|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Template|Win32.ActiveCfg = Template|Win32
+		{A7D5CA1F-AC18-4EE8-A848-18D8CC87E348}.Template|Win32.Build.0 = Template|Win32
 		{5C926976-EF04-4063-B6CB-14AA1E6FBD44}.Debug Alpha|Win32.ActiveCfg = Debug Alpha|Win32
 		{5C926976-EF04-4063-B6CB-14AA1E6FBD44}.Debug Alpha|Win32.Build.0 = Debug Alpha|Win32
 		{5C926976-EF04-4063-B6CB-14AA1E6FBD44}.Debug|Win32.ActiveCfg = Debug|Win32

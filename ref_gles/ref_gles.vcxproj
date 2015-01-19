@@ -25,7 +25,7 @@
   <PropertyGroup Label="Globals">
     <SccProjectName />
     <SccLocalPath />
-    <ProjectGuid>{0C008B01-4AEA-4C81-9E89-39662E33C05D}</ProjectGuid>
+    <ProjectGuid>{a7d5ca1f-ac18-4ee8-a848-18d8cc87e348}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
@@ -106,7 +106,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;C_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\ReleaseAXP\</AssemblerListingLocation>
-      <PrecompiledHeaderOutputFile>.\ReleaseAXP\ref_gl.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\ReleaseAXP\ref_gles.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\ReleaseAXP\</ObjectFileName>
       <ProgramDataBaseFileName>.\ReleaseAXP\</ProgramDataBaseFileName>
       <AdditionalOptions> /QA21164 /QAieee1 </AdditionalOptions>
@@ -114,7 +114,7 @@
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\..\ReleaseAXP\ref_gl.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\ReleaseAXP\ref_gles.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <RedirectOutputAndErrors>NUL</RedirectOutputAndErrors>
       <TargetEnvironment>Win32</TargetEnvironment>
@@ -125,17 +125,17 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\ReleaseAXP\ref_gl.bsc</OutputFile>
+      <OutputFile>.\..\ReleaseAXP\ref_gles.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <OutputFile>.\..\ReleaseAXP\ref_gl.dll</OutputFile>
-      <ImportLibrary>.\..\ReleaseAXP\ref_gl.lib</ImportLibrary>
+      <OutputFile>.\..\ReleaseAXP\ref_gles.dll</OutputFile>
+      <ImportLibrary>.\..\ReleaseAXP\ref_gles.lib</ImportLibrary>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>.\ref_gl.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\ref_gles.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'">
@@ -148,7 +148,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;C_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\DebugAxp\</AssemblerListingLocation>
-      <PrecompiledHeaderOutputFile>.\DebugAxp\ref_gl.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\DebugAxp\ref_gles.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\DebugAxp\</ObjectFileName>
       <ProgramDataBaseFileName>.\DebugAxp\</ProgramDataBaseFileName>
       <AdditionalOptions> /QA21164 /MTd /QAieee1 </AdditionalOptions>
@@ -156,7 +156,7 @@
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\..\DebugAxp\ref_gl.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\DebugAxp\ref_gles.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <RedirectOutputAndErrors>NUL</RedirectOutputAndErrors>
       <TargetEnvironment>Win32</TargetEnvironment>
@@ -167,17 +167,17 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\DebugAxp\ref_gl.bsc</OutputFile>
+      <OutputFile>.\..\DebugAxp\ref_gles.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>.\..\DebugAxp\ref_gl.dll</OutputFile>
-      <ImportLibrary>.\..\DebugAxp\ref_gl.lib</ImportLibrary>
+      <OutputFile>.\..\DebugAxp\ref_gles.dll</OutputFile>
+      <ImportLibrary>.\..\DebugAxp\ref_gles.lib</ImportLibrary>
       <AdditionalDependencies>opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>.\ref_gl.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\ref_gles.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -193,14 +193,14 @@
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\debug\</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeaderOutputFile>.\debug\ref_gl.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\debug\ref_gles.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\debug\</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\..\debug\ref_gl.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\debug\ref_gles.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
@@ -210,17 +210,17 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\debug\ref_gl.bsc</OutputFile>
+      <OutputFile>.\..\debug\ref_gles.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\..\debug\ref_gl.dll</OutputFile>
-      <ImportLibrary>.\..\debug\ref_gl.lib</ImportLibrary>
+      <OutputFile>.\..\debug\ref_gles.dll</OutputFile>
+      <ImportLibrary>.\..\debug\ref_gles.lib</ImportLibrary>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\ref_gl.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\ref_gles.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -234,14 +234,14 @@
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\release\</AssemblerListingLocation>
-      <PrecompiledHeaderOutputFile>.\release\ref_gl.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\release\ref_gles.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\release\</ObjectFileName>
       <ProgramDataBaseFileName>.\release\</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\..\release\ref_gl.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\release\ref_gles.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
@@ -251,17 +251,17 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\release\ref_gl.bsc</OutputFile>
+      <OutputFile>.\..\release\ref_gles.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\..\release\ref_gl.dll</OutputFile>
-      <ImportLibrary>.\..\release\ref_gl.lib</ImportLibrary>
+      <OutputFile>.\..\release\ref_gles.dll</OutputFile>
+      <ImportLibrary>.\..\release\ref_gles.lib</ImportLibrary>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\ref_gl.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\ref_gles.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -273,7 +273,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="..\win32\qgl_win.c">
+    <ClCompile Include="..\win32\qgles_win.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
@@ -281,39 +281,39 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_draw.c">
+    <ClCompile Include="gles_draw.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_image.c">
+    <ClCompile Include="gles_image.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_light.c">
+    <ClCompile Include="gles_light.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_mesh.c">
+    <ClCompile Include="gles_mesh.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_model.c">
+    <ClCompile Include="gles_model.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_rmain.c">
+    <ClCompile Include="gles_rmain.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_rmisc.c">
+    <ClCompile Include="gles_rmisc.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_rsurf.c">
+    <ClCompile Include="gles_rsurf.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="gl_warp.c">
+    <ClCompile Include="gles_warp.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164 /QAieee1   /QA21164 /QAieee1 </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd /QAieee1   /QA21164 /MTd /QAieee1 </AdditionalOptions>
     </ClCompile>
@@ -325,16 +325,15 @@
     <ClInclude Include="..\common\files.h" />
     <ClInclude Include="..\win32\glw_win.h" />
     <ClInclude Include="..\win32\winquake.h" />
-    <ClInclude Include="anorms.h" />
-    <ClInclude Include="anormtab.h" />
-    <ClInclude Include="gl_local.h" />
-    <ClInclude Include="gl_model.h" />
-    <ClInclude Include="qgl.h" />
-    <ClInclude Include="qmenu.h" />
-    <ClInclude Include="warpsin.h" />
+    <ClInclude Include="header\anorms.h" />
+    <ClInclude Include="header\anormtab.h" />
+    <ClInclude Include="header\gles_local.h" />
+    <ClInclude Include="header\gles_model.h" />
+    <ClInclude Include="header\qgles.h" />
+    <ClInclude Include="header\warpsin.h" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="ref_gl.def" />
+    <CustomBuild Include="ref_gles.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

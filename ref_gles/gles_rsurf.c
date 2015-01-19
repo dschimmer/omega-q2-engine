@@ -139,7 +139,7 @@ void DrawGLPoly (glpoly_t *p)
     qglVertexPointer(3, GL_FLOAT, VERTEXSIZE * sizeof(float), NULL);
     
     qglEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), NULL + 3 * sizeof(GL_FLOAT));
+    qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), (float *)NULL + 3 * sizeof(GL_FLOAT));
 
     qglDrawArrays(GL_TRIANGLE_FAN, 0, p->numverts);
     
@@ -207,7 +207,7 @@ void DrawGLFlowingPoly (msurface_t *fa)
     qglVertexPointer(3, GL_FLOAT, VERTEXSIZE * sizeof(float), NULL);
     
     qglEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), NULL + 3 * sizeof(GL_FLOAT));
+    qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), (float *)NULL + 3 * sizeof(GL_FLOAT));
     
     qglDrawArrays(GL_TRIANGLE_FAN, 0, p->numverts);
     
@@ -835,14 +835,14 @@ Com_Printf("Got a surface flowing!!\n");
             GL_SelectTexture(0);
             GL_Bind(image->texnum);
             qglEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), NULL + 3 * sizeof(GL_FLOAT));
+            qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), (float *)NULL + 3 * sizeof(GL_FLOAT));
 
             GL_SelectTexture(1);
             qglEnable(GL_TEXTURE_2D);
             GL_Bind(gl_state.lightmap_textures + lmtex);
             GL_TexEnv(GL_MODULATE);
             qglEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), NULL + 5 * sizeof(GL_FLOAT));
+            qglTexCoordPointer(2, GL_FLOAT, VERTEXSIZE * sizeof(float), (float *)NULL + 5 * sizeof(GL_FLOAT));
 
             qglDrawArrays(GL_TRIANGLE_FAN, 0, p->numverts);
             

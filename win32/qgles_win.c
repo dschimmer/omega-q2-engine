@@ -28,46 +28,46 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ** QGL_Shutdown() - unloads libraries, NULLs function pointers
 */
 #include <float.h>
-//#include "../ref_gl/gl_local.h"
-#include "../../ref_gles/header/gles_local.h"
-#include "glw_android.h"
+#include "../ref_gles/header/gles_local.h""
+#include "glw_win.h"
 
-//#include <GL/fxmesa.h>
-//#include <GL/glx.h>
+int   ( WINAPI * qwglChoosePixelFormat )(HDC, CONST PIXELFORMATDESCRIPTOR *);
+int   ( WINAPI * qwglDescribePixelFormat) (HDC, int, UINT, LPPIXELFORMATDESCRIPTOR);
+int   ( WINAPI * qwglGetPixelFormat)(HDC);
+BOOL  ( WINAPI * qwglSetPixelFormat)(HDC, int, CONST PIXELFORMATDESCRIPTOR *);
+BOOL  ( WINAPI * qwglSwapBuffers)(HDC);
 
-#include <dlfcn.h>
+BOOL  ( WINAPI * qwglCopyContext)(HGLRC, HGLRC, UINT);
+HGLRC ( WINAPI * qwglCreateContext)(HDC);
+HGLRC ( WINAPI * qwglCreateLayerContext)(HDC, int);
+BOOL  ( WINAPI * qwglDeleteContext)(HGLRC);
+HGLRC ( WINAPI * qwglGetCurrentContext)(VOID);
+HDC   ( WINAPI * qwglGetCurrentDC)(VOID);
+PROC  ( WINAPI * qwglGetProcAddress)(LPCSTR);
+BOOL  ( WINAPI * qwglMakeCurrent)(HDC, HGLRC);
+BOOL  ( WINAPI * qwglShareLists)(HGLRC, HGLRC);
+BOOL  ( WINAPI * qwglUseFontBitmaps)(HDC, DWORD, DWORD, DWORD);
 
-const char so_file[] = "/etc/quake2.conf";
+BOOL  ( WINAPI * qwglUseFontOutlines)(HDC, DWORD, DWORD, DWORD, FLOAT,
+                                           FLOAT, int, LPGLYPHMETRICSFLOAT);
 
-/*
-//FX Mesa Functions
-fxMesaContext (*qfxMesaCreateContext)(GLuint win, GrScreenResolution_t, GrScreenRefresh_t, const GLint attribList[]);
-fxMesaContext (*qfxMesaCreateBestContext)(GLuint win, GLint width, GLint height, const GLint attribList[]);
-void (*qfxMesaDestroyContext)(fxMesaContext ctx);
-void (*qfxMesaMakeCurrent)(fxMesaContext ctx);
-fxMesaContext (*qfxMesaGetCurrentContext)(void);
-void (*qfxMesaSwapBuffers)(void);
-*/
-
-//GLX Functions
-#if 0
-XVisualInfo * (*qglXChooseVisual)( Display *dpy, int screen, int *attribList );
-GLXContext (*qglXCreateContext)( Display *dpy, XVisualInfo *vis, GLXContext shareList, Bool direct );
-void (*qglXDestroyContext)( Display *dpy, GLXContext ctx );
-Bool (*qglXMakeCurrent)( Display *dpy, GLXDrawable drawable, GLXContext ctx);
-void (*qglXCopyContext)( Display *dpy, GLXContext src, GLXContext dst, GLuint mask );
-void (*qglXSwapBuffers)( Display *dpy, GLXDrawable drawable );
-#endif
-
+BOOL ( WINAPI * qwglDescribeLayerPlane)(HDC, int, int, UINT,
+                                            LPLAYERPLANEDESCRIPTOR);
+int  ( WINAPI * qwglSetLayerPaletteEntries)(HDC, int, int, int,
+                                                CONST COLORREF *);
+int  ( WINAPI * qwglGetLayerPaletteEntries)(HDC, int, int, int,
+                                                COLORREF *);
+BOOL ( WINAPI * qwglRealizeLayerPalette)(HDC, int, BOOL);
+BOOL ( WINAPI * qwglSwapLayerBuffers)(HDC, UINT);
 
 void ( APIENTRY * qglActiveTexture )(GLenum);
 void ( APIENTRY * qglAlphaFunc )(GLenum func, GLclampf ref);
 void ( APIENTRY * qglAlphaFuncx )(GLenum func, GLclampx ref);
-void ( APIENTRY * qglBindBuffer )(GLenum target, GLuint buffer);
+void ( APIENTRY * qglBindBuffer )( GLenum target, GLuint buffer);
 void ( APIENTRY * qglBindTexture )(GLenum target, GLuint texture);
 void ( APIENTRY * qglBlendFunc )(GLenum sfactor, GLenum dfactor);
-void ( APIENTRY * qglBufferData)(GLenum target, GLsizeiptr size, const GLvoid *data, GLenum usage);
-void ( APIENTRY * qglBufferSubData)(GLenum target, GLintptr offset, GLsizeiptr size, const GLvoid *data);
+void ( APIENTRY * qglBufferData )(GLenum target, GLsizeiptr size, const GLvoid *data, GLenum usage);
+void ( APIENTRY * qglBufferSubData )(GLenum target, GLintptr offset, GLsizeiptr size, const GLvoid *data);
 void ( APIENTRY * qglClear )(GLbitfield mask);
 void ( APIENTRY * qglClearColor )(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
 void ( APIENTRY * qglClearColorx )(GLclampx red, GLclampx green, GLclampx blue, GLclampx alpha);
@@ -209,14 +209,17 @@ void ( APIENTRY * qglViewport )(GLint x, GLint y, GLsizei width, GLsizei height)
 void ( APIENTRY * qglLockArraysEXT)( int, int);
 void ( APIENTRY * qglUnlockArraysEXT) ( void );
 
+BOOL ( WINAPI * qwglSwapIntervalEXT)( int interval );
+BOOL ( WINAPI * qwglGetDeviceGammaRampEXT)( unsigned char *, unsigned char *, unsigned char * );
+BOOL ( WINAPI * qwglSetDeviceGammaRampEXT)( const unsigned char *, const unsigned char *, const unsigned char * );
 void ( APIENTRY * qglPointParameterfEXT)( GLenum param, GLfloat value );
 void ( APIENTRY * qglPointParameterfvEXT)( GLenum param, const GLfloat *value );
 void ( APIENTRY * qglColorTableEXT)( int, int, int, int, int, const void * );
-void ( APIENTRY * qgl3DfxSetPaletteEXT)( GLuint * );
 void ( APIENTRY * qglSelectTextureSGIS)( GLenum );
 void ( APIENTRY * qglMTexCoord2fSGIS)( GLenum, GLfloat, GLfloat );
 void ( APIENTRY * qglActiveTextureARB) ( GLenum );
 void ( APIENTRY * qglClientActiveTextureARB) ( GLenum );
+
 
 static void ( APIENTRY * dllActiveTexture )(GLenum texture);
 static void ( APIENTRY * dllAlphaFunc )(GLenum func, GLclampf ref);
@@ -237,7 +240,7 @@ static void ( APIENTRY * dllClipPlanef )(GLenum plane, const GLfloat *equation);
 static void ( APIENTRY * dllClipPlanex )(GLenum plane, const GLfixed *equation);
 static void ( APIENTRY * dllColor4f )(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
 static void ( APIENTRY * dllColor4ub )(GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha);
-static void ( APIENTRY * dllColor4x )(GLfixed red, GLfixed green, GLfixed blue, GLfixed alpha);
+static void ( APIENTRY * dllColor4x )( GLfixed red, GLfixed green, GLfixed blue, GLfixed alpha);
 static void ( APIENTRY * dllColorMask )(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha);
 static void ( APIENTRY * dllColorPointer )(GLint size, GLenum type, GLsizei stride, const GLvoid *pointer);
 static void ( APIENTRY * dllCompressedTexImage2D )(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const GLvoid *data);
@@ -515,7 +518,6 @@ static void APIENTRY logDeleteBuffers(GLsizei n, const GLuint *buffers)
     dllDeleteBuffers( n, buffers );
 }
 
-
 static void APIENTRY logDeleteTextures(GLsizei n, const GLuint *textures)
 {
     SIG( "glDeleteTextures" );
@@ -626,14 +628,14 @@ static void APIENTRY logFrontFace(GLenum mode)
 
 static void APIENTRY logFrustumf(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat zNear, GLfloat zFar)
 {
-    SIG( "glFrustumf" );
-    dllFrustumf( left, right, bottom, top, zNear, zFar );
+    SIG("glFrustumf");
+    dllFrustumf(left, right, bottom, top, zNear, zFar);
 }
 
 static void APIENTRY logFrustumx(GLfixed left, GLfixed right, GLfixed bottom, GLfixed top, GLfixed zNear, GLfixed zFar)
 {
-    SIG( "glFrustumx" );
-    dllFrustumx( left, right, bottom, top, zNear, zFar );
+    SIG("glFrustumx");
+    dllFrustumx(left, right, bottom, top, zNear, zFar);
 }
 
 static void APIENTRY logGenBuffers(GLsizei n, GLuint *buffers)
@@ -946,14 +948,14 @@ static void APIENTRY logNormalPointer(GLenum type, GLsizei stride, const void *p
 
 static void APIENTRY logOrthof(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat zNear, GLfloat zFar)
 {
-    SIG( "glOrthof" );
-    dllOrthof( left, right, bottom, top, zNear, zFar );
+    SIG("glOrthof");
+    dllOrthof(left, right, bottom, top, zNear, zFar);
 }
 
 static void APIENTRY logOrthox(GLfixed left, GLfixed right, GLfixed bottom, GLfixed top, GLfixed zNear, GLfixed zFar)
 {
-    SIG( "glOrthox" );
-    dllOrthox( left, right, bottom, top, zNear, zFar );
+    SIG("glOrthox");
+    dllOrthox(left, right, bottom, top, zNear, zFar);
 }
 
 static void APIENTRY logPixelStorei(GLenum pname, GLint param)
@@ -986,6 +988,7 @@ static void APIENTRY logPolygonOffset(GLfloat factor, GLfloat units)
     dllPolygonOffset( factor, units );
 }
 
+
 static void APIENTRY logPolygonOffsetx(GLfixed factor, GLfixed units)
 {
     SIG( "glPolygonOffsetx" );
@@ -1003,7 +1006,6 @@ static void APIENTRY logPushMatrix(void)
     SIG( "glPushMatrix" );
     dllPushMatrix();
 }
-
 
 static void APIENTRY logReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void *pixels)
 {
@@ -1139,6 +1141,7 @@ static void APIENTRY logTexParameteriv(GLenum target, GLenum pname, const GLint 
     dllTexParameteriv( target, pname, params );
 }
 
+
 static void APIENTRY logTexParameterx(GLenum target, GLenum pname, GLfixed param)
 {
     fprintf( glw_state.log_fp, "glTexParameterx( 0x%x, 0x%x, %d )\n", target, pname, param );
@@ -1188,13 +1191,13 @@ static void APIENTRY logViewport(GLint x, GLint y, GLsizei width, GLsizei height
 */
 void QGL_Shutdown( void )
 {
-    if ( glw_state.OpenGLLib )
+    if ( glw_state.hinstOpenGL )
     {
-        dlclose ( glw_state.OpenGLLib );
-        glw_state.OpenGLLib = NULL;
+        FreeLibrary( glw_state.hinstOpenGL );
+        glw_state.hinstOpenGL = NULL;
     }
 
-    glw_state.OpenGLLib = NULL;
+    glw_state.hinstOpenGL = NULL;
 
     qglActiveTexture             = NULL;
     qglAlphaFunc                 = NULL;
@@ -1339,31 +1342,38 @@ void QGL_Shutdown( void )
     qglTranslatex                = NULL;
     qglVertexPointer             = NULL;
     qglViewport                  = NULL;
-/*
-    qfxMesaCreateContext         = NULL;
-    qfxMesaCreateBestContext     = NULL;
-    qfxMesaDestroyContext        = NULL;
-    qfxMesaMakeCurrent           = NULL;
-    qfxMesaGetCurrentContext     = NULL;
-    qfxMesaSwapBuffers           = NULL;
-*/
 
-//  qglXChooseVisual             = NULL;
-//  qglXCreateContext            = NULL;
-//  qglXDestroyContext           = NULL;
-//  qglXMakeCurrent              = NULL;
-//  qglXCopyContext              = NULL;
-//  qglXSwapBuffers              = NULL;
+    qwglCopyContext              = NULL;
+    qwglCreateContext            = NULL;
+    qwglCreateLayerContext       = NULL;
+    qwglDeleteContext            = NULL;
+    qwglDescribeLayerPlane       = NULL;
+    qwglGetCurrentContext        = NULL;
+    qwglGetCurrentDC             = NULL;
+    qwglGetLayerPaletteEntries   = NULL;
+    qwglGetProcAddress           = NULL;
+    qwglMakeCurrent              = NULL;
+    qwglRealizeLayerPalette      = NULL;
+    qwglSetLayerPaletteEntries   = NULL;
+    qwglShareLists               = NULL;
+    qwglSwapLayerBuffers         = NULL;
+    qwglUseFontBitmaps           = NULL;
+    qwglUseFontOutlines          = NULL;
+
+    qwglChoosePixelFormat        = NULL;
+    qwglDescribePixelFormat      = NULL;
+    qwglGetPixelFormat           = NULL;
+    qwglSetPixelFormat           = NULL;
+    qwglSwapBuffers              = NULL;
+
+    qwglSwapIntervalEXT = NULL;
+
+    qwglGetDeviceGammaRampEXT = NULL;
+    qwglSetDeviceGammaRampEXT = NULL;
 }
 
-#define GPA( a ) dlsym( glw_state.OpenGLLib, a )
-
-void *qwglGetProcAddress(char *symbol)
-{
-    if (glw_state.OpenGLLib)
-        return GPA ( symbol );
-    return NULL;
-}
+#   pragma warning (disable : 4113 4133 4047 )
+#   define GPA( a ) GetProcAddress( glw_state.hinstOpenGL, a )
 
 /*
 ** QGL_Init
@@ -1375,7 +1385,6 @@ void *qwglGetProcAddress(char *symbol)
 ** might be.
 **
 */
-
 qboolean QGL_Init( const char *dllname )
 {
     // update 3Dfx gamma irrespective of underlying DLL
@@ -1390,32 +1399,16 @@ qboolean QGL_Init( const char *dllname )
         putenv( envbuffer );
     }
 
-    if ( ( glw_state.OpenGLLib = dlopen( dllname, RTLD_LAZY | RTLD_GLOBAL ) ) == 0 )
+    if ( ( glw_state.hinstOpenGL = LoadLibrary( dllname ) ) == 0 )
     {
-        char    fn[MAX_OSPATH];
-        FILE *fp;
+        char *buf = NULL;
 
-//      ri.Con_Printf(PRINT_ALL, "QGL_Init: Can't load %s from /etc/ld.so.conf: %s\n",
-//              dllname, dlerror());
-
-        // try path in /etc/quake2.conf
-        if ((fp = fopen(so_file, "r")) == NULL) {
-            ri.Con_Printf(PRINT_ALL,  "QGL_Init(\"%s\") failed: can't open %s\n", dllname, so_file);
-            return false;
-        }
-        fgets(fn, sizeof(fn), fp);
-        fclose(fp);
-        while (*fn && isspace(fn[strlen(fn) - 1]))
-            fn[strlen(fn) - 1] = 0;
-
-        strcat(fn, "/");
-        strcat(fn, dllname);
-
-        if ( ( glw_state.OpenGLLib = dlopen( fn, RTLD_LAZY ) ) == 0 ) {
-            ri.Con_Printf( PRINT_ALL, "%s\n", dlerror() );
-            return false;
-        }
+        FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, NULL, GetLastError(), MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPTSTR) &buf, 0, NULL);
+        ri.Con_Printf( PRINT_ALL, "%s\n", buf );
+        return false;
     }
+
+    gl_config.allow_cds = true;
 
     qglActiveTexture             =  dllActiveTexture             = GPA( "glActiveTexture" );
     qglAlphaFunc                 =  dllAlphaFunc                 = GPA( "glAlphaFunc" );
@@ -1562,33 +1555,37 @@ qboolean QGL_Init( const char *dllname )
     qglTranslatex                =  dllTranslatex                = GPA( "glTranslatex" );
     qglVertexPointer             =  dllVertexPointer             = GPA( "glVertexPointer" );
     qglViewport                  =  dllViewport                  = GPA( "glViewport" );
-/*
-    qfxMesaCreateContext         =  GPA("fxMesaCreateContext");
-    qfxMesaCreateBestContext     =  GPA("fxMesaCreateBestContext");
-    qfxMesaDestroyContext        =  GPA("fxMesaDestroyContext");
-    qfxMesaMakeCurrent           =  GPA("fxMesaMakeCurrent");
-    qfxMesaGetCurrentContext     =  GPA("fxMesaGetCurrentContext");
-    qfxMesaSwapBuffers           =  GPA("fxMesaSwapBuffers");
-*/
 
-//  qglXChooseVisual             =  GPA("glXChooseVisual");
-//  qglXCreateContext            =  GPA("glXCreateContext");
-//  qglXDestroyContext           =  GPA("glXDestroyContext");
-//  qglXMakeCurrent              =  GPA("glXMakeCurrent");
-//  qglXCopyContext              =  GPA("glXCopyContext");
-//  qglXSwapBuffers              =  GPA("glXSwapBuffers");
-#if 0
-    qglLockArraysEXT = 0;
-    qglUnlockArraysEXT = 0;
+    qwglCopyContext              = GPA( "wglCopyContext" );
+    qwglCreateContext            = GPA( "wglCreateContext" );
+    qwglCreateLayerContext       = GPA( "wglCreateLayerContext" );
+    qwglDeleteContext            = GPA( "wglDeleteContext" );
+    qwglDescribeLayerPlane       = GPA( "wglDescribeLayerPlane" );
+    qwglGetCurrentContext        = GPA( "wglGetCurrentContext" );
+    qwglGetCurrentDC             = GPA( "wglGetCurrentDC" );
+    qwglGetLayerPaletteEntries   = GPA( "wglGetLayerPaletteEntries" );
+    qwglGetProcAddress           = GPA( "wglGetProcAddress" );
+    qwglMakeCurrent              = GPA( "wglMakeCurrent" );
+    qwglRealizeLayerPalette      = GPA( "wglRealizeLayerPalette" );
+    qwglSetLayerPaletteEntries   = GPA( "wglSetLayerPaletteEntries" );
+    qwglShareLists               = GPA( "wglShareLists" );
+    qwglSwapLayerBuffers         = GPA( "wglSwapLayerBuffers" );
+    qwglUseFontBitmaps           = GPA( "wglUseFontBitmapsA" );
+    qwglUseFontOutlines          = GPA( "wglUseFontOutlinesA" );
+
+    qwglChoosePixelFormat        = GPA( "wglChoosePixelFormat" );
+    qwglDescribePixelFormat      = GPA( "wglDescribePixelFormat" );
+    qwglGetPixelFormat           = GPA( "wglGetPixelFormat" );
+    qwglSetPixelFormat           = GPA( "wglSetPixelFormat" );
+    qwglSwapBuffers              = GPA( "wglSwapBuffers" );
+
+    qwglSwapIntervalEXT = 0;
     qglPointParameterfEXT = 0;
     qglPointParameterfvEXT = 0;
     qglColorTableEXT = 0;
-    qgl3DfxSetPaletteEXT = 0;
     qglSelectTextureSGIS = 0;
     qglMTexCoord2fSGIS = 0;
-    qglActiveTextureARB = 0;
-    qglClientActiveTextureARB = 0;
-#endif
+
     return true;
 }
 
@@ -1627,6 +1624,7 @@ void GLimp_EnableLogging( qboolean enable )
         qglClearDepthf               =  logClearDepthf               ;
         qglClearDepthx               =  logClearDepthx               ;
         qglClearStencil              =  logClearStencil              ;
+        qglClientActiveTexture       =  logClientActiveTexture       ;
         qglClipPlanef                =  logClipPlanef                ;
         qglClipPlanex                =  logClipPlanex                ;
         qglColor4f                   =  logColor4f                   ;
@@ -1911,5 +1909,8 @@ void GLimp_LogNewFrame( void )
 {
     fprintf( glw_state.log_fp, "*** R_BeginFrame ***\n" );
 }
+
+#pragma warning (default : 4113 4133 4047 )
+
 
 

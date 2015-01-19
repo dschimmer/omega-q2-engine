@@ -18,8 +18,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
+#ifdef _WIN32
+#include <Windows.h>
+#include <gl/GL.h>
+#include "glext.h"
+#else
 #include <EGL/egl.h>
 #include <GLES/gl.h>
+#endif
+
 #include <math.h>
 
 #include "../../client/ref.h"
@@ -238,7 +245,7 @@ void GL_Bind (int32_t texnum);
 //void GL_MBind( GLenum target, int texnum );
 void GL_TexEnv( GLenum value );
 //void GL_EnableMultitexture( qboolean enable );
-void GL_SelectTexture2(int32_t unit, const char *file, int line);
+void GL_SelectTexture(int32_t unit);
 
 void R_LightPoint (vec3_t p, vec3_t color);
 void R_PushDlights (void);
