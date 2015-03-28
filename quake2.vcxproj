@@ -51,12 +51,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\build\windows\debug\</OutDir>
-    <IntDir>.\build\windows\debug\internal\</IntDir>
+    <IntDir>.\build\windows\.local\debug\quake2\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\release\</OutDir>
-    <IntDir>.\release\</IntDir>
+    <OutDir>.\build\windows\release\</OutDir>
+    <IntDir>.\build\windows\.local\release\quake2\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -69,11 +69,11 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>.\build\windows\debug\</AssemblerListingLocation>
+      <AssemblerListingLocation>$(INTDIR)</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeaderOutputFile>.\build\windows\debug\quake2.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>.\build\windows\debug\internal\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\windows\debug\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(INTDIR)\quake2.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(INTDIR)</ObjectFileName>
+      <ProgramDataBaseFileName>$(INTDIR)</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -88,14 +88,14 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\build\windows\debug\quake2.bsc</OutputFile>
+      <OutputFile>$(INTDIR)\quake2.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <OutputFile>.\build\windows\debug\quake2.exe</OutputFile>
+      <OutputFile>$(OUTDIR)\quake2.exe</OutputFile>
       <AdditionalDependencies>winmm.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -110,15 +110,15 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>.\release\</AssemblerListingLocation>
-      <PrecompiledHeaderOutputFile>.\release\quake2.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>.\release\</ObjectFileName>
-      <ProgramDataBaseFileName>.\release\</ProgramDataBaseFileName>
+      <AssemblerListingLocation>.\build\windows\release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\build\windows\release\quake2.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(INTDIR)</ObjectFileName>
+      <ProgramDataBaseFileName>$(INTDIR)</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\release\quake2.tlb</TypeLibraryName>
+      <TypeLibraryName>.\build\windows\release\quake2.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
@@ -128,14 +128,14 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\release\quake2.bsc</OutputFile>
+      <OutputFile>.\build\windows\release\quake2.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <OutputFile>.\release\quake2.exe</OutputFile>
+      <OutputFile>$(OUTDIR)\quake2.exe</OutputFile>
       <AdditionalDependencies>winmm.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

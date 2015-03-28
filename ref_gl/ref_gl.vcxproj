@@ -51,12 +51,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\..\build\windows\debug\</OutDir>
-    <IntDir>.\debug\</IntDir>
+    <IntDir>.\..\build\windows\.local\debug\ref_gl\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\..\release\</OutDir>
-    <IntDir>.\release\</IntDir>
+    <OutDir>.\..\build\windows\release\</OutDir>
+    <IntDir>.\..\build\windows\.local\release\ref_gl\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -70,16 +70,16 @@
       <MinimalRebuild>true</MinimalRebuild>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>.\debug\</AssemblerListingLocation>
+      <AssemblerListingLocation>$(INTDIR)</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeaderOutputFile>.\debug\ref_gl.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>.\debug\</ObjectFileName>
-      <ProgramDataBaseFileName>.\debug\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(INTDIR)\ref_gl.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(INTDIR)</ObjectFileName>
+      <ProgramDataBaseFileName>$(INTDIR)</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\..\build\windows\debug\ref_gl.tlb</TypeLibraryName>
+      <TypeLibraryName>$(INTDIR)\ref_gl.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
@@ -89,15 +89,15 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\build\windows\debug\ref_gl.bsc</OutputFile>
+      <OutputFile>$(INTDIR)\ref_gl.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\..\build\windows\debug\ref_gl.dll</OutputFile>
-      <ImportLibrary>.\..\build\windows\debug\ref_gl.lib</ImportLibrary>
+      <OutputFile>$(OUTDIR)\ref_gl.dll</OutputFile>
+      <ImportLibrary>$(INTDIR)\ref_gl.lib</ImportLibrary>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>.\ref_gl.def</ModuleDefinitionFile>
     </Link>
@@ -112,15 +112,15 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>.\release\</AssemblerListingLocation>
-      <PrecompiledHeaderOutputFile>.\release\ref_gl.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>.\release\</ObjectFileName>
-      <ProgramDataBaseFileName>.\release\</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(INTDIR)</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>$(INTDIR)\ref_gl.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(INTDIR)</ObjectFileName>
+      <ProgramDataBaseFileName>$(INTDIR)</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\..\release\ref_gl.tlb</TypeLibraryName>
+      <TypeLibraryName>$(INTDIR)\ref_gl.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
@@ -130,15 +130,15 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\release\ref_gl.bsc</OutputFile>
+      <OutputFile>$(INTDIR)\ref_gl.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\..\release\ref_gl.dll</OutputFile>
-      <ImportLibrary>.\..\release\ref_gl.lib</ImportLibrary>
+      <OutputFile>$(OUTDIR)\ref_gl.dll</OutputFile>
+      <ImportLibrary>$(INTDIR)\ref_gl.lib</ImportLibrary>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>.\ref_gl.def</ModuleDefinitionFile>
     </Link>
