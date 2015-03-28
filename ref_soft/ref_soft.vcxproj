@@ -50,7 +50,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\..\debug\</OutDir>
+    <OutDir>.\..\build\windows\debug\</OutDir>
     <IntDir>.\debug\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
@@ -79,7 +79,7 @@
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\..\debug\ref_soft.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\build\windows\debug\ref_soft.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
@@ -89,7 +89,7 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\debug\ref_soft.bsc</OutputFile>
+      <OutputFile>.\..\build\windows\debug\ref_soft.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -98,8 +98,8 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>libc;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <OutputFile>.\..\debug\ref_soft.dll</OutputFile>
-      <ImportLibrary>.\..\debug\ref_soft.lib</ImportLibrary>
+      <OutputFile>.\..\build\windows\debug\ref_soft.dll</OutputFile>
+      <ImportLibrary>.\..\build\windows\debug\ref_soft.lib</ImportLibrary>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>.\ref_soft.def</ModuleDefinitionFile>
       <ShowProgress>LinkVerbose</ShowProgress>
@@ -150,50 +150,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\shared\shared.c">
-    </ClCompile>
-    <ClCompile Include="..\win32\q_shwin.c">
-    </ClCompile>
-    <ClCompile Include="..\win32\rw_ddraw.c">
-    </ClCompile>
-    <ClCompile Include="..\win32\rw_dib.c">
-    </ClCompile>
-    <ClCompile Include="..\win32\rw_imp.c">
-    </ClCompile>
-    <ClCompile Include="r_aclip.c">
-    </ClCompile>
-    <ClCompile Include="r_alias.c">
-    </ClCompile>
-    <ClCompile Include="r_bsp.c">
-    </ClCompile>
-    <ClCompile Include="r_draw.c">
-    </ClCompile>
-    <ClCompile Include="r_edge.c">
-    </ClCompile>
-    <ClCompile Include="r_image.c">
-    </ClCompile>
-    <ClCompile Include="r_light.c">
-    </ClCompile>
-    <ClCompile Include="r_main.c">
-    </ClCompile>
-    <ClCompile Include="r_misc.c">
-    </ClCompile>
-    <ClCompile Include="r_model.c">
-    </ClCompile>
-    <ClCompile Include="r_part.c">
-    </ClCompile>
-    <ClCompile Include="r_poly.c">
-    </ClCompile>
-    <ClCompile Include="r_polyse.c">
-    </ClCompile>
-    <ClCompile Include="r_rast.c">
-    </ClCompile>
-    <ClCompile Include="r_scan.c">
-    </ClCompile>
-    <ClCompile Include="r_sprite.c">
-    </ClCompile>
-    <ClCompile Include="r_surf.c">
-    </ClCompile>
+    <ClCompile Include="..\shared\shared.c" />
+    <ClCompile Include="..\win32\q_shwin.c" />
+    <ClCompile Include="..\win32\rw_ddraw.c" />
+    <ClCompile Include="..\win32\rw_dib.c" />
+    <ClCompile Include="..\win32\rw_imp.c" />
+    <ClCompile Include="r_aclip.c" />
+    <ClCompile Include="r_alias.c" />
+    <ClCompile Include="r_bsp.c" />
+    <ClCompile Include="r_draw.c" />
+    <ClCompile Include="r_edge.c" />
+    <ClCompile Include="r_image.c" />
+    <ClCompile Include="r_light.c" />
+    <ClCompile Include="r_main.c" />
+    <ClCompile Include="r_misc.c" />
+    <ClCompile Include="r_model.c" />
+    <ClCompile Include="r_part.c" />
+    <ClCompile Include="r_poly.c" />
+    <ClCompile Include="r_polyse.c" />
+    <ClCompile Include="r_rast.c" />
+    <ClCompile Include="r_scan.c" />
+    <ClCompile Include="r_sprite.c" />
+    <ClCompile Include="r_surf.c" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ref_soft.def" />

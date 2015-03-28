@@ -50,8 +50,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\debug\</OutDir>
-    <IntDir>.\debug\</IntDir>
+    <OutDir>.\build\windows\debug\</OutDir>
+    <IntDir>.\build\windows\debug\internal\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -69,16 +69,16 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>.\debug\</AssemblerListingLocation>
+      <AssemblerListingLocation>.\build\windows\debug\</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeaderOutputFile>.\debug\quake2.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>.\debug\</ObjectFileName>
-      <ProgramDataBaseFileName>.\debug\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\windows\debug\quake2.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\build\windows\debug\internal\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\windows\debug\</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\debug\quake2.tlb</TypeLibraryName>
+      <TypeLibraryName>.\build\windows\debug\quake2.tlb</TypeLibraryName>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
@@ -88,14 +88,14 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\debug\quake2.bsc</OutputFile>
+      <OutputFile>.\build\windows\debug\quake2.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <OutputFile>.\debug\quake2.exe</OutputFile>
+      <OutputFile>.\build\windows\debug\quake2.exe</OutputFile>
       <AdditionalDependencies>winmm.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -140,102 +140,54 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="client\cl_cin.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_ents.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_fx.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_input.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_inv.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_main.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_newfx.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_parse.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_pred.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_scrn.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_tent.c">
-    </ClCompile>
-    <ClCompile Include="client\cl_view.c">
-    </ClCompile>
-    <ClCompile Include="client\console.c">
-    </ClCompile>
-    <ClCompile Include="client\keys.c">
-    </ClCompile>
-    <ClCompile Include="client\menu.c">
-    </ClCompile>
-    <ClCompile Include="client\qmenu.c">
-    </ClCompile>
-    <ClCompile Include="client\snd_dma.c">
-    </ClCompile>
-    <ClCompile Include="client\snd_mem.c">
-    </ClCompile>
-    <ClCompile Include="client\snd_mix.c">
-    </ClCompile>
-    <ClCompile Include="client\x86.c">
-    </ClCompile>
-    <ClCompile Include="shared\flash.c">
-    </ClCompile>
-    <ClCompile Include="shared\shared.c">
-    </ClCompile>
-    <ClCompile Include="common\cmd.c">
-    </ClCompile>
-    <ClCompile Include="common\cmodel.c">
-    </ClCompile>
-    <ClCompile Include="common\common.c">
-    </ClCompile>
-    <ClCompile Include="common\crc.c">
-    </ClCompile>
-    <ClCompile Include="common\cvar.c">
-    </ClCompile>
-    <ClCompile Include="common\files.c">
-    </ClCompile>
-    <ClCompile Include="common\md4.c">
-    </ClCompile>
-    <ClCompile Include="common\net_chan.c">
-    </ClCompile>
-    <ClCompile Include="common\pmove.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_ccmds.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_ents.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_game.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_init.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_main.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_send.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_user.c">
-    </ClCompile>
-    <ClCompile Include="server\sv_world.c">
-    </ClCompile>
-    <ClCompile Include="win32\cd_win.c">
-    </ClCompile>
-    <ClCompile Include="win32\conproc.c">
-    </ClCompile>
-    <ClCompile Include="win32\in_win.c">
-    </ClCompile>
-    <ClCompile Include="win32\net_wins.c">
-    </ClCompile>
-    <ClCompile Include="win32\q_shwin.c">
-    </ClCompile>
-    <ClCompile Include="win32\snd_win.c">
-    </ClCompile>
-    <ClCompile Include="win32\sys_win.c">
-    </ClCompile>
-    <ClCompile Include="win32\vid_dll.c">
-    </ClCompile>
-    <ClCompile Include="win32\vid_menu.c">
-    </ClCompile>
+    <ClCompile Include="client\cl_cin.c" />
+    <ClCompile Include="client\cl_ents.c" />
+    <ClCompile Include="client\cl_fx.c" />
+    <ClCompile Include="client\cl_input.c" />
+    <ClCompile Include="client\cl_inv.c" />
+    <ClCompile Include="client\cl_main.c" />
+    <ClCompile Include="client\cl_newfx.c" />
+    <ClCompile Include="client\cl_parse.c" />
+    <ClCompile Include="client\cl_pred.c" />
+    <ClCompile Include="client\cl_scrn.c" />
+    <ClCompile Include="client\cl_tent.c" />
+    <ClCompile Include="client\cl_view.c" />
+    <ClCompile Include="client\console.c" />
+    <ClCompile Include="client\keys.c" />
+    <ClCompile Include="client\menu.c" />
+    <ClCompile Include="client\qmenu.c" />
+    <ClCompile Include="client\snd_dma.c" />
+    <ClCompile Include="client\snd_mem.c" />
+    <ClCompile Include="client\snd_mix.c" />
+    <ClCompile Include="client\x86.c" />
+    <ClCompile Include="shared\flash.c" />
+    <ClCompile Include="shared\shared.c" />
+    <ClCompile Include="common\cmd.c" />
+    <ClCompile Include="common\cmodel.c" />
+    <ClCompile Include="common\common.c" />
+    <ClCompile Include="common\crc.c" />
+    <ClCompile Include="common\cvar.c" />
+    <ClCompile Include="common\files.c" />
+    <ClCompile Include="common\md4.c" />
+    <ClCompile Include="common\net_chan.c" />
+    <ClCompile Include="common\pmove.c" />
+    <ClCompile Include="server\sv_ccmds.c" />
+    <ClCompile Include="server\sv_ents.c" />
+    <ClCompile Include="server\sv_game.c" />
+    <ClCompile Include="server\sv_init.c" />
+    <ClCompile Include="server\sv_main.c" />
+    <ClCompile Include="server\sv_send.c" />
+    <ClCompile Include="server\sv_user.c" />
+    <ClCompile Include="server\sv_world.c" />
+    <ClCompile Include="win32\cd_win.c" />
+    <ClCompile Include="win32\conproc.c" />
+    <ClCompile Include="win32\in_win.c" />
+    <ClCompile Include="win32\net_wins.c" />
+    <ClCompile Include="win32\q_shwin.c" />
+    <ClCompile Include="win32\snd_win.c" />
+    <ClCompile Include="win32\sys_win.c" />
+    <ClCompile Include="win32\vid_dll.c" />
+    <ClCompile Include="win32\vid_menu.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client\anorms.h" />
