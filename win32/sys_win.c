@@ -488,6 +488,15 @@ void *Sys_GetGameAPI (void *parms)
 	const char *debugdir = "debugaxp";
 #endif
 
+#elif defined _M_X64
+    const char *gamename = "gamex64.dll";
+
+#ifdef NDEBUG
+    const char *debugdir = "releasex64";
+#else
+    const char *debugdir = "debugx64";
+#endif
+
 #endif
 
 	if (game_library)
@@ -617,7 +626,9 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 //			Con_Printf ("time:%5.2f - %5.2f = %5.2f\n", newtime, oldtime, time);
 
 		//	_controlfp( ~( _EM_ZERODIVIDE /*| _EM_INVALID*/ ), _MCW_EM );
+#if defined (_M_IX86)
 		_controlfp( _PC_24, _MCW_PC );
+#endif
 		Com_Frame (time);
 
 		oldtime = newtime;
