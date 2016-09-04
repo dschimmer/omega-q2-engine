@@ -45,13 +45,13 @@
     <ClCompile Include="..\win32\glw_imp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game\q_shared.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\win32\q_shwin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\win32\qgl_win.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\shared.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,15 +71,6 @@
     <ClInclude Include="..\win32\glw_win.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\game\q_shared.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\qcommon\qcommon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\qcommon\qfiles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="qgl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -89,13 +80,19 @@
     <ClInclude Include="..\client\ref.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ref_gl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="warpsin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\win32\winquake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

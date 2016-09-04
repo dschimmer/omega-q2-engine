@@ -188,3 +188,7 @@ FakesAssemblies/
 
 # Android build
 libs/
+
+# Stupid Visual Studio adding more useless files types
+*.VC.db
+*.VC.opendb

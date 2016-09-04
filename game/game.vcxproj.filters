@@ -93,9 +93,6 @@
     <ClCompile Include="m_chick.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="m_flash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="m_flipper.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -156,7 +153,10 @@
     <ClCompile Include="p_weapon.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="q_shared.c">
+    <ClCompile Include="../shared/flash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="../shared/shared.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -233,7 +233,7 @@
     <ClInclude Include="m_tank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="q_shared.h">
+    <ClInclude Include="../shared/shared.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
