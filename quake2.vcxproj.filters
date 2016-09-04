@@ -54,28 +54,10 @@
     <ClCompile Include="client\cl_view.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\cmd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cmodel.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\common.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="win32\conproc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="client\console.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\crc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cvar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\files.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="win32\in_win.c">
@@ -84,25 +66,10 @@
     <ClCompile Include="client\keys.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\m_flash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\md4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="client\menu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\net_chan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="win32\net_wins.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\pmove.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game\q_shared.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="win32\q_shwin.c">
@@ -159,12 +126,42 @@
     <ClCompile Include="client\x86.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shared\flash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shared\shared.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\cmd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\cmodel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\crc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\cvar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\files.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\md4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\net_chan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\pmove.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client\anorms.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\bspfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="client\cdaudio.h">
@@ -186,15 +183,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="client\keys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\q_shared.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\qcommon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\qfiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="client\qmenu.h">
@@ -219,6 +207,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="win32\winquake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

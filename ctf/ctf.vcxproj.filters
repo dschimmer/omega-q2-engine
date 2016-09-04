@@ -90,9 +90,7 @@
     <ClCompile Include="p_weapon.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="q_shared.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="../shared/shared.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="g_ctf.h">
@@ -110,9 +108,7 @@
     <ClInclude Include="p_menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="q_shared.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="../shared/shared.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ctf.def">
